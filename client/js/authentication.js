@@ -1,10 +1,10 @@
-$('#authentication-send').unbind('click').click(function (event) {
+$('#login-send').unbind('click').click(function (event) {
     validateLogin(event);
 });
 
 $('#disconnect').unbind('click').click(function () {
     Cookies.set('token', '');
-    document.getElementById('connexion-form').style.display = 'block';
+    document.getElementById('login-form').style.display = 'block';
     document.getElementById('disconnect_div').style.display = 'none';
 
     let text;
@@ -17,7 +17,7 @@ $('#disconnect').unbind('click').click(function () {
 });
 
 function validateLogin(event) {
-    let login = $('#login').val();
+    let login = $('#username').val();
     let password = $('#password').val();
 
     if(login.length === 0 || password.length === 0) {
@@ -46,7 +46,7 @@ function validateLogin(event) {
         if (xhr.status === 200) {
             Cookies.set('token', xhr.responseText);
 
-            document.getElementById('connexion-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'none';
             document.getElementById('disconnect_div').style.display = 'block';
 
             let text;

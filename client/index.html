@@ -1,43 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>MCQ Manager</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/floating-labels.css" rel="stylesheet">
 </head>
 <body>
 
-<br />
 
-<div id="information" class="container">
-</div>
 
-<div id="disconnect_div" class="container" style="display: none">
-    <button type="button" class="btn btn-warning" id="disconnect"> Deconnexion</button>
-</div>
-
-<br />
-
-<div id="connexion-form" class="container" style="display: none">
-    <div class="input-group">
-        <span class="input-group-addon">Login</span>
-        <input type="text" class="form-control" id="login" placeholder="Enter your login" autofocus>
+<div class="form-signin">
+    <div id="disconnect_div" class="text-center mb-4"  style="display: none">
+        <button type="button" class="btn btn-warning" id="disconnect"> Deconnexion</button>
     </div>
-    <br />
 
-    <div class="input-group">
-        <span class="input-group-addon">Password</span>
-        <input type="password" class="form-control" id="password" placeholder="Enter your password" autofocus>
+    <div id="login-form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">MCQ Login</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+            <label for="username">Username</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="login-send">Sign in</button>
     </div>
-    <br />
-
-    <button class="btn btn-success pull-right" id="authentication-send">
-        <span class="glyphicon glyphicon-send"></span> Send
-    </button>
 </div>
-
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
