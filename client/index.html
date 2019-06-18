@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ Manager</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<br />
+
+<div id="information" class="container">
+</div>
+
+<div id="disconnect_div" class="container" style="display: none">
+    <button type="button" class="btn btn-warning" id="disconnect"> Deconnexion</button>
+</div>
+
+<br />
+
+<div id="connexion-form" class="container" style="display: none">
+    <div class="input-group">
+        <span class="input-group-addon">Login</span>
+        <input type="text" class="form-control" id="login" placeholder="Enter your login" autofocus>
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">Password</span>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password" autofocus>
+    </div>
+    <br />
+
+    <button class="btn btn-success pull-right" id="authentication-send">
+        <span class="glyphicon glyphicon-send"></span> Send
+    </button>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/authentication.js"></script>
+
+</body>
+</html>
