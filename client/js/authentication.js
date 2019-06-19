@@ -1,3 +1,5 @@
+let addressIP = "http://10.16.1.164:8080";
+
 $('#login-send').unbind('click').click(function (event) {
     validateLogin(event);
 });
@@ -39,7 +41,7 @@ function validateLogin(event) {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'php/request.php/authenticate');
+    xhr.open('GET', addressIP + "/authenticate");
     xhr.setRequestHeader('Authorization', 'Basic ' + btoa(login + ':' + password));
 
     xhr.onload = function () {
@@ -57,7 +59,7 @@ function validateLogin(event) {
             text += '</div>';
             $('#information').html(text);
 
-            ajaxRequest('GET', "php/request.php/photos/", displayPicture);
+            ajaxRequest('GET', addressIP + "/photos", displayPicture);
 
         } else {
             console.log('HTTP error:' + xhr.status);
@@ -67,18 +69,16 @@ function validateLogin(event) {
     xhr.send();
 }
 
-function displayPicture(ajaxResponse) {
-    console.log(ajaxResponse);
-
+function displayGroups(ajaxResponse) {
     let text;
 
     text = '<div class="alert alert-success" role="alert">';
     text += '<span class="glyphicon glyphicon-exclamation-sign"></span>';
-    text += '<strong> Connecté</strong>';
-    text += '</div>';
+    text += '<strong> You are connected as ';
+    text += ajaxResponse;
+    text += '</strong></div>';
     $('#information').html(text);
 
     document.getElementById('disconnect_div').style.display = 'block';
+    document.getElementById('page-content').style.display = 'block';
 }
-
-ajaxRequest('POST', "php/request.php/photos/", displayPicture);

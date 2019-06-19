@@ -21,11 +21,11 @@ function ajaxRequest(type, request, callback, data = null) {
         break;
 
       case 401 :
-        document.getElementById('connexion-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'block';
         break;
 
       case 403 :
-        document.getElementById('connexion-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'block';
         break;
 
       default:
