@@ -4,6 +4,7 @@
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/Database.cpp
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/Database.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/model/Group.h
+CMakeFiles/server.dir/src/Database.cpp.o: ../src/model/Student.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/allocators.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/encodings.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/internal/diyfp.h
@@ -21,6 +22,7 @@ CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/rapidjson.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/stream.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/stringbuffer.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/rapidjson/writer.h
+CMakeFiles/server.dir/src/Database.cpp.o: ../src/utils/Utils.h
 CMakeFiles/server.dir/src/Database.cpp.o: ../src/utils/sha1.h
 
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/Database.h
@@ -29,6 +31,7 @@ CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/HelloHandler.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/headers/Authorization.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/headers/CORS.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/model/Group.h
+CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/model/Student.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/rapidjson/allocators.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/rapidjson/document.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o: ../src/rapidjson/encodedstream.h
@@ -63,6 +66,7 @@ CMakeFiles/server.dir/src/main.cpp.o: ../src/headers/Authorization.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/headers/CORS.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/server.dir/src/main.cpp.o: ../src/model/Group.h
+CMakeFiles/server.dir/src/main.cpp.o: ../src/model/Student.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/rapidjson/allocators.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/rapidjson/document.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/rapidjson/encodedstream.h
@@ -110,6 +114,9 @@ CMakeFiles/server.dir/src/model/Group.cpp.o: ../src/rapidjson/rapidjson.h
 CMakeFiles/server.dir/src/model/Group.cpp.o: ../src/rapidjson/stream.h
 CMakeFiles/server.dir/src/model/Group.cpp.o: ../src/rapidjson/stringbuffer.h
 CMakeFiles/server.dir/src/model/Group.cpp.o: ../src/rapidjson/writer.h
+
+CMakeFiles/server.dir/src/model/Student.cpp.o: ../src/model/Student.cpp
+CMakeFiles/server.dir/src/model/Student.cpp.o: ../src/model/Student.h
 
 CMakeFiles/server.dir/src/utils/Utils.cpp.o: ../src/utils/Utils.cpp
 CMakeFiles/server.dir/src/utils/Utils.cpp.o: ../src/utils/Utils.h

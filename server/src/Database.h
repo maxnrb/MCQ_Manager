@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "model/Group.h"
+#include "model/Student.h"
 
 using std::string;
 using std::vector;
@@ -35,11 +36,14 @@ public:
     bool addGroup(string name);
     vector<Group*> getGroups();
     bool addStudent(string name, string surname, int group_id);
+    vector<Student*> getStudents(int group_id);
 
     bool addUser(string login, string password, int privilege=0);
     bool checkUser(string login, string password);
+    bool addTest(string name, string group, string date, int user);
     bool setToken(string login, string token);
     bool checkToken(string token);
+    int getUserIdByToken(string token);
 
 };
 

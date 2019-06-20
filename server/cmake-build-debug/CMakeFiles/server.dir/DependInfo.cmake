@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/HelloHandler.cpp.o"
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/main.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/main.cpp.o"
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/model/Group.cpp.o"
+  "/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/model/Student.cpp.o"
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/utils/Utils.cpp.o"
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/base64.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/utils/base64.cpp.o"
   "/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.cpp" "/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir/src/utils/sha1.cpp.o"

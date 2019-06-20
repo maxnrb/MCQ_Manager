@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/src/HelloHandler.cpp.o"
   "CMakeFiles/server.dir/src/main.cpp.o"
   "CMakeFiles/server.dir/src/model/Group.cpp.o"
+  "CMakeFiles/server.dir/src/model/Student.cpp.o"
   "CMakeFiles/server.dir/src/utils/Utils.cpp.o"
   "CMakeFiles/server.dir/src/utils/base64.cpp.o"
   "CMakeFiles/server.dir/src/utils/sha1.cpp.o"

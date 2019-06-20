@@ -4,6 +4,7 @@
 
 #include "Database.h"
 #include "utils/sha1.h"
+#include "utils/Utils.h"
 
 Database::~Database()
 {
@@ -56,10 +57,6 @@ vector<Group*> Database::getGroups()
                 groups.push_back(gp);
             } while (query.fetch());
         }
-        else
-        {
-            return groups;
-        }
     }catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
     }
@@ -77,6 +74,32 @@ bool Database::addStudent(string name, string surname, int group_id)
         std::cerr << "Error: " << e.what() << std::endl;
         return false;
     }
+}
+
+vector<Student*> Database::getStudents(int group_id)
+{
+    vector<Student*> students;
+    try
+    {
+        string pass_hash = SHA1::toSha1(password);
+        soci::row group_row;
+
+        soci::statement query = (session->prepare
+                << "SELECT id,first_name,last_name,group_id FROM students WHERE group_id='"+std::to_string(group_id)+"'",
+                soci::into(group_row));
+        query.execute(true);
+        if(query.got_data())
+        {
+            do
+            {
+                Student *st = new Student(group_row.get<int>(0), group_row.get<std::string>(1), group_row.get<string>(2), group_row.get<int>(3));
+                students.push_back(st);
+            } while (query.fetch());
+        }
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    return students;
 }
 
 bool Database::addUser(string login, string password, int privilege)
@@ -117,6 +140,22 @@ bool Database::checkUser(string login, string password)
     }
 }
 
+bool Database::addTest(string name, string group, string date, int user)
+{
+    try
+    {
+        string pass_hash = SHA1::toSha1(password);
+        vector<string> dates = Utils::explode(date, '/');
+        date = dates.at(2)+"-"+dates.at(0)+"-"+dates.at(1);
+        soci::statement query = session->prepare << "INSERT INTO tests (name, date, group_id, user_id) VALUES('" + name + "', '"+date+"', '" + group + "', '"+std::to_string(user)+"')";
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cerr << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 bool Database::setToken(string login, string token)
 {
     try
@@ -153,5 +192,28 @@ bool Database::checkToken(string token)
     }catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
         return false;
+    }
+}
+
+int Database::getUserIdByToken(string token)
+{
+    try
+    {
+        soci::row user;
+        soci::statement query = (session->prepare
+                << "SELECT id FROM users WHERE token='" + token + "'", soci::into(
+                user));
+        query.execute(true);
+        if (query.got_data())
+        {
+            return user.get<int>(0);
+        }
+        else
+        {
+            return -1;
+        }
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        return -1;
     }
 }

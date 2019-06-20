@@ -11,6 +11,8 @@ Database.h
 /mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h
 utils/sha1.h
 /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.h
+utils/Utils.h
+/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.h
 
 /mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h
 iostream
@@ -23,6 +25,8 @@ vector
 -
 model/Group.h
 /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h
+model/Student.h
+/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
 
 /mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.cpp
 HelloHandler.h
@@ -83,6 +87,14 @@ string
 -
 ../rapidjson/prettywriter.h
 /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/prettywriter.h
+
+/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp
+Student.h
+/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
+
+/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
+string
+-
 
 /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h
 rapidjson.h

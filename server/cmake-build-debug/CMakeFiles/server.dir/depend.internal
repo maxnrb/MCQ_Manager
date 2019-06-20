@@ -5,6 +5,7 @@ CMakeFiles/server.dir/src/Database.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/Database.cpp
  /mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/encodings.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/diyfp.h
@@ -22,6 +23,7 @@ CMakeFiles/server.dir/src/Database.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stream.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stringbuffer.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/writer.h
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.h
 CMakeFiles/server.dir/src/HelloHandler.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h
@@ -30,6 +32,7 @@ CMakeFiles/server.dir/src/HelloHandler.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/headers/Authorization.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/headers/CORS.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/document.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/encodedstream.h
@@ -64,6 +67,7 @@ CMakeFiles/server.dir/src/main.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/headers/CORS.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/main.cpp
  /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/document.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/encodedstream.h
@@ -111,6 +115,9 @@ CMakeFiles/server.dir/src/model/Group.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stream.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stringbuffer.h
  /mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/writer.h
+CMakeFiles/server.dir/src/model/Student.cpp.o
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp
+ /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h
 CMakeFiles/server.dir/src/utils/Utils.cpp.o
  /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.cpp
  /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.h

@@ -231,6 +231,33 @@ src/model/Group.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Group.cpp.s
 .PHONY : src/model/Group.cpp.s
 
+src/model/Student.o: src/model/Student.cpp.o
+
+.PHONY : src/model/Student.o
+
+# target to build an object file
+src/model/Student.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.o
+.PHONY : src/model/Student.cpp.o
+
+src/model/Student.i: src/model/Student.cpp.i
+
+.PHONY : src/model/Student.i
+
+# target to preprocess a source file
+src/model/Student.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.i
+.PHONY : src/model/Student.cpp.i
+
+src/model/Student.s: src/model/Student.cpp.s
+
+.PHONY : src/model/Student.s
+
+# target to generate assembly for a file
+src/model/Student.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.s
+.PHONY : src/model/Student.cpp.s
+
 src/utils/Utils.o: src/utils/Utils.cpp.o
 
 .PHONY : src/utils/Utils.o
@@ -333,6 +360,9 @@ help:
 	@echo "... src/model/Group.o"
 	@echo "... src/model/Group.i"
 	@echo "... src/model/Group.s"
+	@echo "... src/model/Student.o"
+	@echo "... src/model/Student.i"
+	@echo "... src/model/Student.s"
 	@echo "... src/utils/Utils.o"
 	@echo "... src/utils/Utils.i"
 	@echo "... src/utils/Utils.s"
