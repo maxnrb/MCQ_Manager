@@ -1,7 +1,7 @@
 # MCQ_Manager
 Automatic reading system for mutliple choice questions
 
-##Requirements:
+## Requirements:
 -Install pistache:
 ```
 git clone https://github.com/oktal/pistache.git
