@@ -137,7 +137,7 @@ public:
                             {
                                 std::cout << "No groups found" <<std::endl;
                                 response.send(Http::Code::Not_Found);
-                            }
+                            } 
                         }
                     }
 
