@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="serveur"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/d/Cours/C++/Projet/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/d/Cours/C++/Projet/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/d/Cours/C++/Projet/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Projet">
+				<Option output="/mnt/d/Cours/C++/Projet/cmake-build-debug/Projet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/Cours/C++/Projet/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/soci"/>
+					<Add directory="/usr/include/soci/mysql"/>
+					<Add directory="/usr/include/mysql"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 Projet"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Projet/fast">
+				<Option output="/mnt/d/Cours/C++/Projet/cmake-build-debug/Projet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/Cours/C++/Projet/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/soci"/>
+					<Add directory="/usr/include/soci/mysql"/>
+					<Add directory="/usr/include/mysql"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 Projet/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/Cours/C++/Projet/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/Database.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/Database.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/HelloHandler.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/HelloHandler.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/headers/Authorization.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/headers/CORS.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/main.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/model/Group.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/model/Group.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/allocators.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/cursorstreamwrapper.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/document.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/encodedstream.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/encodings.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/error/en.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/error/error.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/filereadstream.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/filewritestream.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/fwd.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/biginteger.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/diyfp.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/dtoa.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/ieee754.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/itoa.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/meta.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/pow10.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/regex.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/stack.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/strfunc.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/strtod.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/internal/swap.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/istreamwrapper.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/memorybuffer.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/memorystream.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/msinttypes/inttypes.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/msinttypes/stdint.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/ostreamwrapper.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/pointer.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/prettywriter.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/rapidjson.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/reader.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/schema.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/stream.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/stringbuffer.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/rapidjson/writer.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/Utils.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/Utils.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/base64.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/base64.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/sha1.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/src/utils/sha1.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/mnt/d/Cours/C++/Projet/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
