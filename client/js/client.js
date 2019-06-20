@@ -21,7 +21,7 @@ document.getElementById("student-send").addEventListener("click",function (event
     console.log(option.id);
 
     ajaxRequest('POST', addressIP + "/student", function () {
-        console.log("student added");
+        console.log("Student added");
     }, 'group_id=' + option.id + "&first_name=" + $('#studentFirstName').val() + "&last_name=" + $('#studentLastName').val()
     );
 });
@@ -31,12 +31,27 @@ document.getElementById("admin-send").addEventListener("click",function (event) 
     console.log("Add admin");
 
     ajaxRequest('POST', addressIP + "/user", function () {
-        console.log("admin added");
+        console.log("Admin added");
     }, 'login=' + $('#adminName').val() + "&password=" + $('#adminPassword').val()
     );
 });
 
+document.getElementById("test-send").addEventListener("click",function (event) {
+    console.log("Add test");
+
+    let option = document.querySelector("#test-group > option:checked");
+    console.log(option.id);
+    console.log($('#datepicker').val());
+
+    ajaxRequest('POST', addressIP + "/test", function () {
+        console.log("Test added");
+    }, 'group_id=' + option.id + "&date=" + $('#datepicker').val() + "&name=" + $('#testName').val()
+    );
+});
+
 function showGroups(ajaxResponse) {
+    // TODO : verifier si pas de groupe
+
     console.log(ajaxResponse);
     let data = JSON.parse(ajaxResponse);
     console.log(data);
@@ -47,6 +62,7 @@ function showGroups(ajaxResponse) {
     }
 
     $('#student-group').html(groups);
+    $('#test-group').html(groups);
 }
 
 function showStudents(ajaxResponse) {

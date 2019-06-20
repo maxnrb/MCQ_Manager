@@ -7,10 +7,10 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/floating-labels.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="tools/gijgo/css/bootstrap_4.0.0.min.css">
     <link href="tools/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
 
 
 <div class="form-signin">
@@ -82,12 +82,13 @@
             <h1 class="h3 mb-3 font-weight-normal">Create Test</h1>
         </div>
 
-
         <div class="form-label-group">
             <select id="test-group" class="form-control">
-                <option id="1">cir1</option>
-                <option id="2">cir2</option>
             </select>
+        </div>
+
+        <div class="text-center mb-4">
+            <input id="datepicker"/>
         </div>
 
         <div class="form-label-group">
@@ -95,10 +96,10 @@
             <label for="studentFirstName">Name</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" id=test-send">Create</button>
+        <button class="btn btn-lg btn-primary btn-block" id="test-send">Create</button>
     </div>
 
-
+    <br>
 
     <div id="admin-form" style="display: block">
         <div class="text-center mb-4">
@@ -129,6 +130,11 @@
 <script src="js/client.js"></script>
 <script src="tools/gijgo/js/gijgo.min.js" type="text/javascript"></script>
 
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>
 
 </body>
 </html>
