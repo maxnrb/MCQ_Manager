@@ -63,6 +63,20 @@ vector<Group*> Database::getGroups()
     return groups;
 }
 
+bool Database::deleteGroup(int id)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "DELETE FROM groups WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        false;
+    }
+}
+
 bool Database::addStudent(string name, string surname, int group_id)
 {
     try
@@ -100,6 +114,20 @@ vector<Student*> Database::getStudents(int group_id)
         std::cout << "Error: " << e.what() << std::endl;
     }
     return students;
+}
+
+bool Database::deleteStudent(int id)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "DELETE FROM students WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        false;
+    }
 }
 
 bool Database::addUser(string login, string password, int privilege)
@@ -153,6 +181,20 @@ bool Database::addTest(string name, string group, string date, int user)
     }catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
         return false;
+    }
+}
+
+bool Database::deleteTest(int id)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "DELETE FROM tests WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        false;
     }
 }
 

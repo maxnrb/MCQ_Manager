@@ -204,6 +204,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/model/Answer.o: src/model/Answer.cpp.o
+
+.PHONY : src/model/Answer.o
+
+# target to build an object file
+src/model/Answer.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.o
+.PHONY : src/model/Answer.cpp.o
+
+src/model/Answer.i: src/model/Answer.cpp.i
+
+.PHONY : src/model/Answer.i
+
+# target to preprocess a source file
+src/model/Answer.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.i
+.PHONY : src/model/Answer.cpp.i
+
+src/model/Answer.s: src/model/Answer.cpp.s
+
+.PHONY : src/model/Answer.s
+
+# target to generate assembly for a file
+src/model/Answer.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.s
+.PHONY : src/model/Answer.cpp.s
+
 src/model/Group.o: src/model/Group.cpp.o
 
 .PHONY : src/model/Group.o
@@ -231,6 +258,33 @@ src/model/Group.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Group.cpp.s
 .PHONY : src/model/Group.cpp.s
 
+src/model/Question.o: src/model/Question.cpp.o
+
+.PHONY : src/model/Question.o
+
+# target to build an object file
+src/model/Question.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.o
+.PHONY : src/model/Question.cpp.o
+
+src/model/Question.i: src/model/Question.cpp.i
+
+.PHONY : src/model/Question.i
+
+# target to preprocess a source file
+src/model/Question.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.i
+.PHONY : src/model/Question.cpp.i
+
+src/model/Question.s: src/model/Question.cpp.s
+
+.PHONY : src/model/Question.s
+
+# target to generate assembly for a file
+src/model/Question.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.s
+.PHONY : src/model/Question.cpp.s
+
 src/model/Student.o: src/model/Student.cpp.o
 
 .PHONY : src/model/Student.o
@@ -257,6 +311,33 @@ src/model/Student.s: src/model/Student.cpp.s
 src/model/Student.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.s
 .PHONY : src/model/Student.cpp.s
+
+src/model/Test.o: src/model/Test.cpp.o
+
+.PHONY : src/model/Test.o
+
+# target to build an object file
+src/model/Test.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.o
+.PHONY : src/model/Test.cpp.o
+
+src/model/Test.i: src/model/Test.cpp.i
+
+.PHONY : src/model/Test.i
+
+# target to preprocess a source file
+src/model/Test.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.i
+.PHONY : src/model/Test.cpp.i
+
+src/model/Test.s: src/model/Test.cpp.s
+
+.PHONY : src/model/Test.s
+
+# target to generate assembly for a file
+src/model/Test.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.s
+.PHONY : src/model/Test.cpp.s
 
 src/utils/Utils.o: src/utils/Utils.cpp.o
 
@@ -357,12 +438,21 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/model/Answer.o"
+	@echo "... src/model/Answer.i"
+	@echo "... src/model/Answer.s"
 	@echo "... src/model/Group.o"
 	@echo "... src/model/Group.i"
 	@echo "... src/model/Group.s"
+	@echo "... src/model/Question.o"
+	@echo "... src/model/Question.i"
+	@echo "... src/model/Question.s"
 	@echo "... src/model/Student.o"
 	@echo "... src/model/Student.i"
 	@echo "... src/model/Student.s"
+	@echo "... src/model/Test.o"
+	@echo "... src/model/Test.i"
+	@echo "... src/model/Test.s"
 	@echo "... src/utils/Utils.o"
 	@echo "... src/utils/Utils.i"
 	@echo "... src/utils/Utils.s"

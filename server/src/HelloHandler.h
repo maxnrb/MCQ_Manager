@@ -247,6 +247,72 @@ HTTP_PROTOTYPE(HelloHandler)
                         }
                     }
                 }
+                if(request.method() == Http::Method::Delete)
+                {
+                    if(request.resource() == "/student")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Deleting student " << params.at("student_id")  << std::endl;
+                        if(db->deleteStudent(std::stoi(params.at("student_id"))))
+                        {
+                            std::cout << "Student was successfully deleted" << std::endl;
+                            response.send(Http::Code::Ok);
+                        }
+                        else
+                        {
+                            std::cout << "Student failed to delete" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                }
+                if(request.method() == Http::Method::Delete)
+                {
+                    if(request.resource() == "/student")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Deleting student " << params.at("student_id")  << std::endl;
+                        if(db->deleteStudent(std::stoi(params.at("student_id"))))
+                        {
+                            std::cout << "Student was successfully deleted" << std::endl;
+                            response.send(Http::Code::Ok);
+                        }
+                        else
+                        {
+                            std::cout << "Student failed to delete" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    if(request.resource() == "/group")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Deleting group " << params.at("group_id")  << std::endl;
+                        if(db->deleteGroup(std::stoi(params.at("group_id"))))
+                        {
+                            std::cout << "Group was successfully deleted" << std::endl;
+                            response.send(Http::Code::Ok);
+                        }
+                        else
+                        {
+                            std::cout << "Group failed to delete" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    if(request.resource() == "/test")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Deleting test " << params.at("test_id")  << std::endl;
+                        if(db->deleteTest(std::stoi(params.at("test_id"))))
+                        {
+                            std::cout << "Test was successfully deleted" << std::endl;
+                            response.send(Http::Code::Ok);
+                        }
+                        else
+                        {
+                            std::cout << "Test failed to delete" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                }
             } else
             {
                 std::cout << "Bad token" << std::endl;

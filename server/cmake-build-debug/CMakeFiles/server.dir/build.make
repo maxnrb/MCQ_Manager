@@ -129,9 +129,33 @@ CMakeFiles/server.dir/src/main.cpp.o.provides: CMakeFiles/server.dir/src/main.cp
 CMakeFiles/server.dir/src/main.cpp.o.provides.build: CMakeFiles/server.dir/src/main.cpp.o
 
 
+CMakeFiles/server.dir/src/model/Answer.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/model/Answer.cpp.o: ../src/model/Answer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/model/Answer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/model/Answer.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.cpp
+
+CMakeFiles/server.dir/src/model/Answer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/model/Answer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.cpp > CMakeFiles/server.dir/src/model/Answer.cpp.i
+
+CMakeFiles/server.dir/src/model/Answer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/model/Answer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.cpp -o CMakeFiles/server.dir/src/model/Answer.cpp.s
+
+CMakeFiles/server.dir/src/model/Answer.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/model/Answer.cpp.o.requires
+
+CMakeFiles/server.dir/src/model/Answer.cpp.o.provides: CMakeFiles/server.dir/src/model/Answer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/model/Answer.cpp.o.provides
+
+CMakeFiles/server.dir/src/model/Answer.cpp.o.provides.build: CMakeFiles/server.dir/src/model/Answer.cpp.o
+
+
 CMakeFiles/server.dir/src/model/Group.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/model/Group.cpp.o: ../src/model/Group.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/model/Group.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/model/Group.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/model/Group.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.cpp
 
 CMakeFiles/server.dir/src/model/Group.cpp.i: cmake_force
@@ -153,9 +177,33 @@ CMakeFiles/server.dir/src/model/Group.cpp.o.provides: CMakeFiles/server.dir/src/
 CMakeFiles/server.dir/src/model/Group.cpp.o.provides.build: CMakeFiles/server.dir/src/model/Group.cpp.o
 
 
+CMakeFiles/server.dir/src/model/Question.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/model/Question.cpp.o: ../src/model/Question.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/model/Question.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/model/Question.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.cpp
+
+CMakeFiles/server.dir/src/model/Question.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/model/Question.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.cpp > CMakeFiles/server.dir/src/model/Question.cpp.i
+
+CMakeFiles/server.dir/src/model/Question.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/model/Question.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.cpp -o CMakeFiles/server.dir/src/model/Question.cpp.s
+
+CMakeFiles/server.dir/src/model/Question.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/model/Question.cpp.o.requires
+
+CMakeFiles/server.dir/src/model/Question.cpp.o.provides: CMakeFiles/server.dir/src/model/Question.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/model/Question.cpp.o.provides
+
+CMakeFiles/server.dir/src/model/Question.cpp.o.provides.build: CMakeFiles/server.dir/src/model/Question.cpp.o
+
+
 CMakeFiles/server.dir/src/model/Student.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/model/Student.cpp.o: ../src/model/Student.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/model/Student.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/model/Student.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/model/Student.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp
 
 CMakeFiles/server.dir/src/model/Student.cpp.i: cmake_force
@@ -177,9 +225,33 @@ CMakeFiles/server.dir/src/model/Student.cpp.o.provides: CMakeFiles/server.dir/sr
 CMakeFiles/server.dir/src/model/Student.cpp.o.provides.build: CMakeFiles/server.dir/src/model/Student.cpp.o
 
 
+CMakeFiles/server.dir/src/model/Test.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/model/Test.cpp.o: ../src/model/Test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/model/Test.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/model/Test.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp
+
+CMakeFiles/server.dir/src/model/Test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/model/Test.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp > CMakeFiles/server.dir/src/model/Test.cpp.i
+
+CMakeFiles/server.dir/src/model/Test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/model/Test.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp -o CMakeFiles/server.dir/src/model/Test.cpp.s
+
+CMakeFiles/server.dir/src/model/Test.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/model/Test.cpp.o.requires
+
+CMakeFiles/server.dir/src/model/Test.cpp.o.provides: CMakeFiles/server.dir/src/model/Test.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/model/Test.cpp.o.provides
+
+CMakeFiles/server.dir/src/model/Test.cpp.o.provides.build: CMakeFiles/server.dir/src/model/Test.cpp.o
+
+
 CMakeFiles/server.dir/src/utils/Utils.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/utils/Utils.cpp.o: ../src/utils/Utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/utils/Utils.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/utils/Utils.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/utils/Utils.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.cpp
 
 CMakeFiles/server.dir/src/utils/Utils.cpp.i: cmake_force
@@ -203,7 +275,7 @@ CMakeFiles/server.dir/src/utils/Utils.cpp.o.provides.build: CMakeFiles/server.di
 
 CMakeFiles/server.dir/src/utils/base64.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/utils/base64.cpp.o: ../src/utils/base64.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/utils/base64.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/src/utils/base64.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/utils/base64.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/base64.cpp
 
 CMakeFiles/server.dir/src/utils/base64.cpp.i: cmake_force
@@ -227,7 +299,7 @@ CMakeFiles/server.dir/src/utils/base64.cpp.o.provides.build: CMakeFiles/server.d
 
 CMakeFiles/server.dir/src/utils/sha1.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/utils/sha1.cpp.o: ../src/utils/sha1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/utils/sha1.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/src/utils/sha1.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/utils/sha1.cpp.o -c /mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.cpp
 
 CMakeFiles/server.dir/src/utils/sha1.cpp.i: cmake_force
@@ -254,8 +326,11 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/src/Database.cpp.o" \
 "CMakeFiles/server.dir/src/HelloHandler.cpp.o" \
 "CMakeFiles/server.dir/src/main.cpp.o" \
+"CMakeFiles/server.dir/src/model/Answer.cpp.o" \
 "CMakeFiles/server.dir/src/model/Group.cpp.o" \
+"CMakeFiles/server.dir/src/model/Question.cpp.o" \
 "CMakeFiles/server.dir/src/model/Student.cpp.o" \
+"CMakeFiles/server.dir/src/model/Test.cpp.o" \
 "CMakeFiles/server.dir/src/utils/Utils.cpp.o" \
 "CMakeFiles/server.dir/src/utils/base64.cpp.o" \
 "CMakeFiles/server.dir/src/utils/sha1.cpp.o"
@@ -266,14 +341,17 @@ server_EXTERNAL_OBJECTS =
 server: CMakeFiles/server.dir/src/Database.cpp.o
 server: CMakeFiles/server.dir/src/HelloHandler.cpp.o
 server: CMakeFiles/server.dir/src/main.cpp.o
+server: CMakeFiles/server.dir/src/model/Answer.cpp.o
 server: CMakeFiles/server.dir/src/model/Group.cpp.o
+server: CMakeFiles/server.dir/src/model/Question.cpp.o
 server: CMakeFiles/server.dir/src/model/Student.cpp.o
+server: CMakeFiles/server.dir/src/model/Test.cpp.o
 server: CMakeFiles/server.dir/src/utils/Utils.cpp.o
 server: CMakeFiles/server.dir/src/utils/base64.cpp.o
 server: CMakeFiles/server.dir/src/utils/sha1.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -284,8 +362,11 @@ CMakeFiles/server.dir/build: server
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Database.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/HelloHandler.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/main.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/model/Answer.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/model/Group.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/model/Question.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/model/Student.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/model/Test.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/utils/Utils.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/utils/base64.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/utils/sha1.cpp.o.requires

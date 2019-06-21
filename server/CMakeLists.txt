@@ -11,7 +11,7 @@ include_directories(/usr/include/mysql)
 
 file (GLOB_RECURSE Project_files src/*.cpp src/*.h)
 
-add_executable(server ${Project_files})
+add_executable(server ${Project_files} src/model/Test.cpp src/model/Test.h src/model/Question.cpp src/model/Question.h src/model/Answer.cpp src/model/Answer.h)
 
 target_link_libraries(server pistache)
 target_link_libraries(server soci_core soci_mysql)

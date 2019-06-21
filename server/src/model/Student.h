@@ -41,8 +41,8 @@ public:
     {
         string json = "{";
         json += "\"id\":\""+ std::to_string(id) +"\",";
-        json += "\"first_name\":\""+ first_name +"\"";
-        json += "\"last_name\":\""+ last_name +"\"";
+        json += "\"first_name\":\""+ first_name +"\",";
+        json += "\"last_name\":\""+ last_name +"\",";
         json += "\"group_id\":\""+ std::to_string(group_id) +"\"";
         json += "}";
         return json;

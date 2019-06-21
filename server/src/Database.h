@@ -35,12 +35,15 @@ public:
     void connect();
     bool addGroup(string name);
     vector<Group*> getGroups();
+    bool deleteGroup(int id);
     bool addStudent(string name, string surname, int group_id);
     vector<Student*> getStudents(int group_id);
+    bool deleteStudent(int id);
 
     bool addUser(string login, string password, int privilege=0);
     bool checkUser(string login, string password);
     bool addTest(string name, string group, string date, int user);
+    bool deleteTest(int id);
     bool setToken(string login, string token);
     bool checkToken(string token);
     int getUserIdByToken(string token);

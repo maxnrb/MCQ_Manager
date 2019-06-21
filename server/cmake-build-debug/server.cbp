@@ -111,16 +111,34 @@
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/main.cpp">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.cpp">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.h">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h">
