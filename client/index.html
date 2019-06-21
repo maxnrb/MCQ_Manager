@@ -1,137 +1,274 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MCQ Manager</title>
+    <title>Tab</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="css/floating-labels.css" rel="stylesheet">
 
     <link rel="stylesheet" href="tools/gijgo/css/bootstrap_4.0.0.min.css">
-    <link href="tools/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="tools/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+        body {
+            padding-top: 80px; /* Whatever the height of your navbar is; the
+                             default is 50px */
+        }
+    </style>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="#">MCQ Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="form-signin">
-    <div id="disconnect_div" class="text-center mb-4"  style="display: none">
-        <button type="button" class="btn btn-warning" id="disconnect"> Deconnexion</button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <ul class="navbar-nav nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#home" role="tab">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#create" role="tab">Create</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#manage" role="tab">Manage</a>
+            </li>
+        </ul>
     </div>
 
-    <div id="login-form" style="display: none">
-        <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">MCQ Login</h1>
+    <div class="float-right">
+        <button class="btn btn-outline-warning" type="submit">Admin</button>
+        <button class="btn btn-outline-danger" type="submit">Disconnect</button>
+    </div>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="page-content tab-content">
+
+        <div class="card tab-pane fade" id="home" role="tabpanel">
         </div>
 
-        <div class="form-label-group">
-            <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
-            <label for="username">Username</label>
+        <div class="card tab-pane fade" id="create" role="tabpanel">
+            <div class="card-header">
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="group_createBtn" data-toggle="pill" href="#create-group" role="tab">Group</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="student_createBtn" data-toggle="pill" href="#create-student" role="tab">Student</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="test_createBtn" data-toggle="pill" href="#create-test" role="tab">Test</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="create-group" role="tabpanel">
+
+
+                    <div class="page-element" id="group_form">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Create new group :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="groupName" class="form-control" placeholder="Group name" required autofocus>
+                            <label for="groupName">Group Name</label>
+                        </div>
+
+                        <button class="btn btn-lg btn-outline-success btn-block" id="group_send">Create</button>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="create-student" role="tabpanel">
+
+                    <div class="page-element" id="student_form">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Create new student :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <select id="student_group" class="form-control">
+                                <option selected disabled>Choose promotion ></option>
+                            </select>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="studentFirstName" class="form-control" placeholder="Group name"  required autofocus>
+                            <label for="studentFirstName">First Name</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="studentLastName" class="form-control" placeholder="Group name" required autofocus>
+                            <label for="studentLastName">Last Name</label>
+                        </div>
+
+                        <button class="btn btn-lg btn-outline-success btn-block" id="student_send">Create</button>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="create-test" role="tabpanel">
+
+                    <div class="page-element" id="test_form">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Create new test :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <select id="test_group" class="form-control">
+                                <option selected disabled>Choose promotion ></option>
+                            </select>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <input class="datepicker" placeholder="Choose date >"/>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="testName" class="form-control" placeholder="Test name" required autofocus>
+                            <label for="studentFirstName">Name</label>
+                        </div>
+
+                        <button class="btn btn-lg btn-outline-success btn-block" id="test_send">Create</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="form-label-group">
-            <input type="password" id="password" class="form-control" placeholder="Password" required>
-            <label for="password">Password</label>
+        <div class="card tab-pane fade" id="manage" role="tabpanel">
+            <div class="card-header">
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="group_manageBtn" data-toggle="pill" href="#manage-group" role="tab">Group</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="student_manageBtn" data-toggle="pill" href="#manage-student" role="tab">Student</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="test_manageBtn" data-toggle="pill" href="#manage-test" role="tab">Test</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="manage-group" role="tabpanel">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Group Name</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="group_tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="manage-student" role="tabpanel">
+                    <div>
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Manage student :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <select id="group_manageStudentSelector" class="form-control">
+                                <option selected disabled>Choose group ></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Group</th>
+                                <th scope="col">First name</th>
+                                <th scope="col">Last name</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="student_tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="manage-test" role="tabpanel">
+                    <div>
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Manage test :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <select id="group_manageTestSelector" class="form-control">
+                                <option selected disabled>Choose group ></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Name</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="test_tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" id="login-send">Sign in</button>
+
     </div>
 
+</main>
 
-    <div id="group-form" style="display: block">
-        <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Create Group (class)</h1>
-        </div>
-
-        <div class="form-label-group">
-            <input type="text" id="groupName" class="form-control" placeholder="Group name" required autofocus>
-            <label for="username">Group Name</label>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" id="group-send">Create</button>
-    </div>
-
-    <br>
-
-    <div id="student-form" style="display: block">
-        <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Create Student</h1>
-        </div>
-
-        <div class="form-label-group">
-            <select id="student-group" class="form-control">
-            </select>
-        </div>
-
-        <div class="form-label-group">
-            <input type="text" id="studentFirstName" class="form-control" placeholder="Group name" required autofocus>
-            <label for="studentFirstName">First Name</label>
-        </div>
-
-        <div class="form-label-group">
-            <input type="text" id="studentLastName" class="form-control" placeholder="Group name" required autofocus>
-            <label for="studentLastName">Last Name</label>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" id="student-send">Create</button>
-    </div>
-
-    <br>
-
-    <div id="test-form" style="display: block">
-        <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Create Test</h1>
-        </div>
-
-        <div class="form-label-group">
-            <select id="test-group" class="form-control">
-            </select>
-        </div>
-
-        <div class="text-center mb-4">
-            <input id="datepicker"/>
-        </div>
-
-        <div class="form-label-group">
-            <input type="text" id="testName" class="form-control" placeholder="Test name" required autofocus>
-            <label for="studentFirstName">Name</label>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" id="test-send">Create</button>
-    </div>
-
-    <br>
-
-    <div id="admin-form" style="display: block">
-        <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Create new user</h1>
-        </div>
-
-        <div class="form-label-group">
-            <input type="text" id="adminName" class="form-control" placeholder="Username" required autofocus>
-            <label for="username">Username</label>
-        </div>
-
-        <div class="form-label-group">
-            <input type="password" id="adminPassword" class="form-control" placeholder="Password" required>
-            <label for="password">Password</label>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" id="admin-send">Create</button>
-    </div>
-
-
-</div>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 <script src="js/ajax.js"></script>
 <script src="js/js.cookie.js"></script>
 <script src="js/authentication.js"></script>
-<script src="js/client.js"></script>
+<script src="js/client-final.js"></script>
+
 <script src="tools/gijgo/js/gijgo.min.js" type="text/javascript"></script>
 
 <script>
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
         uiLibrary: 'bootstrap4'
     });
 </script>

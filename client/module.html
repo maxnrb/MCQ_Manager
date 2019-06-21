@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ Manager</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/floating-labels.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="tools/gijgo/css/bootstrap_4.0.0.min.css">
+    <link href="tools/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+
+<div class="form-signin">
+    <div id="disconnect_div" class="text-center mb-4"  style="display: block">
+        <button type="button" class="btn btn-info" id="home_btn"> Home</button>
+        <button type="button" class="btn btn-danger" id="disconnect"> Deconnexion</button>
+        <button type="button" class="btn btn-warning" id="group_formBtn"> Create group</button>
+        <button type="button" class="btn btn-warning" id="student_formBtn"> Create student</button>
+        <button type="button" class="btn btn-warning" id="test_formBtn"> Create test</button>
+        <button type="button" class="btn btn-success" id="group_manageBtn"> Manage group</button>
+        <button type="button" class="btn btn-success" id="student_manageBtn"> Manage student</button>
+    </div>
+
+    <div id="login-form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">MCQ Login</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+            <label for="username">Username</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="login-send">Sign in</button>
+    </div>
+
+    <div class="page-element" id="group_selectorDiv" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Chose student</h1>
+        </div>
+
+        <div class="form-label-group">
+            <select id="group_selector" class="form-control">
+            </select>
+
+            <button class="btn btn-success" id="chooseGroup">Chose Group</button>
+        </div>
+    </div>
+
+    <div class="page-element" id="student_selectorDiv" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Chose student</h1>
+        </div>
+
+        <div class="form-label-group">
+            <select id="student_selector" class="form-control">
+            </select>
+
+            <button class="btn btn-success" id="chooseStudent">Show Student</button>
+        </div>
+    </div>
+
+    <div class="page-element management" id="group_manageDiv" style="display: none">
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Group Name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="group_tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="page-element management" id="student_manageDiv" style="display: none">
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Group</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="student_tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="page-element management" id="test_manageDiv" style="display: none">
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="test_tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="page-element" id="group_form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Create Group (class)</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="groupName" class="form-control" placeholder="Group name" required autofocus>
+            <label for="groupName">Group Name</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="group_send">Create</button>
+    </div>
+
+    <div class="page-element" id="student_form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Create Student</h1>
+        </div>
+
+        <div class="form-label-group">
+            <select id="student_group" class="form-control">
+            </select>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="studentFirstName" class="form-control" placeholder="Group name" required autofocus>
+            <label for="studentFirstName">First Name</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="studentLastName" class="form-control" placeholder="Group name" required autofocus>
+            <label for="studentLastName">Last Name</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="student_send">Create</button>
+    </div>
+
+    <div class="page-element" id="test_form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Create Test</h1>
+        </div>
+
+        <div class="form-label-group">
+            <select id="test_group" class="form-control">
+            </select>
+        </div>
+
+        <div class="text-center mb-4">
+            <input class="datepicker"/>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="testName" class="form-control" placeholder="Test name" required autofocus>
+            <label for="studentFirstName">Name</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="test_send">Create</button>
+    </div>
+
+    <div class="page-element" id="admin_form" style="display: none">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Create new user</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="text" id="adminName" class="form-control" placeholder="Username" required autofocus>
+            <label for="username">Username</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="adminPassword" class="form-control" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="admin_send">Create</button>
+    </div>
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/authentication.js"></script>
+<script src="js/client.js"></script>
+<script src="tools/gijgo/js/gijgo.min.js" type="text/javascript"></script>
+
+<script>
+    $('.datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>
+
+</body>
+</html>

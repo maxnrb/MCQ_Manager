@@ -6,6 +6,7 @@ $('#login-send').unbind('click').click(function (event) {
 
 $('#disconnect').unbind('click').click(function () {
     Cookies.set('token', '');
+    hideForms();
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('disconnect_div').style.display = 'none';
 
@@ -59,8 +60,7 @@ function validateLogin(event) {
             text += '</div>';
             $('#information').html(text);
 
-            ajaxRequest('GET', addressIP + "/photos", displayPicture);
-
+            ajaxRequest('GET', addressIP + "/groups", showGroups);
         } else {
             console.log('HTTP error:' + xhr.status);
         }

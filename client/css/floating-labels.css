@@ -1,17 +1,16 @@
-html,
-body {
-  height: 100%;
-}
+html, body {
+    height: 100%;
+  }
 
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
+  /*body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }*/
 
 .form-signin {
   width: 100%;
@@ -30,6 +29,7 @@ body {
   height: 3.125rem;
   padding: .75rem;
 }
+
 
 .form-label-group > label {
   position: absolute;
