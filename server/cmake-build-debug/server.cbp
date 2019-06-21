@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="server"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server">
+				<Option output="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/soci"/>
+					<Add directory="/usr/include/soci/mysql"/>
+					<Add directory="/usr/include/mysql"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server/fast">
+				<Option output="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/soci"/>
+					<Add directory="/usr/include/soci/mysql"/>
+					<Add directory="/usr/include/mysql"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Database.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/headers/Authorization.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/headers/CORS.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/main.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Answer.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Group.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Question.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/allocators.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/cursorstreamwrapper.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/document.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/encodedstream.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/encodings.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/error/en.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/error/error.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/filereadstream.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/filewritestream.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/fwd.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/biginteger.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/diyfp.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/dtoa.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/ieee754.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/itoa.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/meta.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/pow10.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/regex.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/stack.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/strfunc.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/strtod.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/internal/swap.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/istreamwrapper.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/memorybuffer.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/memorystream.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/msinttypes/inttypes.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/msinttypes/stdint.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/ostreamwrapper.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/pointer.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/prettywriter.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/rapidjson.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/reader.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/schema.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stream.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/stringbuffer.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/rapidjson/writer.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/Utils.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/base64.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/base64.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/utils/sha1.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
