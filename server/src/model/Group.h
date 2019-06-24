@@ -6,9 +6,6 @@
 #define PROJET_GROUP_H
 
 #include <string>
-#include "../rapidjson/prettywriter.h"
-
-using namespace rapidjson;
 using std::string;
 
 class Group

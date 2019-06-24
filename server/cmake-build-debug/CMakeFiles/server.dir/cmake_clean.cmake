@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "server_automoc.cpp"
   "CMakeFiles/server.dir/src/Database.cpp.o"
   "CMakeFiles/server.dir/src/HelloHandler.cpp.o"
   "CMakeFiles/server.dir/src/main.cpp.o"
@@ -10,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/src/utils/Utils.cpp.o"
   "CMakeFiles/server.dir/src/utils/base64.cpp.o"
   "CMakeFiles/server.dir/src/utils/sha1.cpp.o"
+  "CMakeFiles/server.dir/server_automoc.cpp.o"
   "server.pdb"
   "server"
 )

@@ -25,3 +25,8 @@ server/cmake-build-debug/CMakeFiles/server.dir/src/main.cpp.o
 server/cmake-build-debug/Makefile
 server/cmake-build-debug/server
 server/cmake-build-debug/server.cbp
+*.internal
+*.make
+*.o
+*.internal
+*.includecache

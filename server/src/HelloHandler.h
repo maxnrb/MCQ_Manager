@@ -11,8 +11,7 @@
 #include "Database.h"
 #include "headers/Authorization.h"
 #include "utils/base64.h"
-
-#include "rapidjson/document.h"
+#include "Qt/ImageDownloader.h"
 
 #include <iostream>
 #include <map>
@@ -28,11 +27,14 @@ class HelloHandler : public Http::Handler
 {
 private:
     Database *db;
+    ImageDownloader* window;
+    int argc;
+    char** argv;
 public:
 
 HTTP_PROTOTYPE(HelloHandler)
-
-    HelloHandler()
+    string b64;
+    HelloHandler(int argc, char** argv) : argc(argc), argv(argv)
     {
         db = new Database("127.0.0.1", "mcq_user", "mcq_password");
         db->connect();
@@ -67,6 +69,7 @@ HTTP_PROTOTYPE(HelloHandler)
         {
             //Pré-requête: on accepte le header authorization avec CORS
             response.headers().add<Http::Header::AccessControlAllowHeaders>("authorization");
+            response.headers().add<Http::Header::AccessControlAllowMethods>("GET, POST, PUT, DELETE");
             response.send(Http::Code::Ok);
         }
             //If authenticate request
@@ -120,6 +123,11 @@ HTTP_PROTOTYPE(HelloHandler)
 
                 if (request.method() == Http::Method::Get)
                 {
+                    if (request.resource() == "/image")
+                    {
+                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/2/10.jpg", argc, argv);
+                        response.send(Http::Code::Ok, b64);
+                    }
                     if (request.resource() == "/groups")
                     {
                         vector<Group *> groups = db->getGroups();
@@ -178,6 +186,36 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Not_Found);
                         }
                     }
+                    if(request.resource() == "/tests")
+                    {
+                        int group_id = std::stoi(request.query().get("group_id").get());
+                        vector<Test *> tests = db->getTests(group_id);
+
+                        if (tests.size() != 0)
+                        {
+                            std::cout << "Tests:" << std::endl;
+                            for (Test *test : tests)
+                            {
+                                std::cout << test->getName() << std::endl;
+                            }
+
+                            //JSON Object
+                            string json = "[";
+
+                            for (const auto test : tests)
+                            {
+                                json += test->serialize();
+                                json += ",";
+                            }
+                            json.pop_back();
+                            json += "]";
+                            response.send(Http::Code::Ok, json);
+                        } else
+                        {
+                            std::cout << "No tests found" << std::endl;
+                            response.send(Http::Code::Not_Found);
+                        }
+                    }
                 }
 
                 if (request.method() == Http::Method::Post)
@@ -231,89 +269,115 @@ HTTP_PROTOTYPE(HelloHandler)
                         }
                     }
 
-                    if(request.resource() == "/test")
+                    if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Creating test named " << params.at("name") << " for " << params.at("group_id") << " at " << params.at("date") << std::endl;
-                        if(db->addTest(params.at("name"), params.at("group_id"), params.at("date"), db->getUserIdByToken(token)))
+                        std::cout << "Creating test named " << params.at("name") << " for " << params.at("group_id")
+                                  << " at " << params.at("date") << std::endl;
+                        if (db->addTest(params.at("name"), params.at("group_id"), params.at("date"),
+                                        db->getUserIdByToken(token)))
                         {
                             std::cout << "Test creation success" << std::endl;
                             response.send(Http::Code::Ok);
-                        }
-                        else
+                        } else
                         {
                             std::cout << "Test creation failed" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
                 }
-                if(request.method() == Http::Method::Delete)
+                if (request.method() == Http::Method::Put)
                 {
-                    if(request.resource() == "/student")
+                    if (request.resource() == "/group")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Deleting student " << params.at("student_id")  << std::endl;
-                        if(db->deleteStudent(std::stoi(params.at("student_id"))))
+                        std::cout << "Set name of group " << params.at("group_id") << " to " << params.at("name") << std::endl;
+                        if (db->modifyGroup(std::stoi(params.at("group_id")), params.at("name")))
                         {
-                            std::cout << "Student was successfully deleted" << std::endl;
+                            std::cout << "Group was successfully modified" << std::endl;
                             response.send(Http::Code::Ok);
-                        }
-                        else
+                        } else
                         {
-                            std::cout << "Student failed to delete" << std::endl;
+                            std::cout << "Group failed to modify" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    if (request.resource() == "/student")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Update student " << params.at("student_id") << std::endl;
+                        if (db->modifyStudent(std::stoi(params.at("student_id")), params.at("first_name"),params.at("last_name"),std::stoi(params.at("group_id"))))
+                        {
+                            std::cout << "Student was successfully modified" << std::endl;
+                            response.send(Http::Code::Ok);
+                        } else
+                        {
+                            std::cout << "Student failed to modify" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    if (request.resource() == "/test")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Update test " << params.at("test_id") << std::endl;
+                        if (db->modifyTest(std::stoi(params.at("test_id")), params.at("test_name"),params.at("date")))
+                        {
+                            std::cout << "Test was successfully modified" << std::endl;
+                            response.send(Http::Code::Ok);
+                        } else
+                        {
+                            std::cout << "Test failed to modify" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
                 }
-                if(request.method() == Http::Method::Delete)
+                if (request.method() == Http::Method::Delete)
                 {
-                    if(request.resource() == "/student")
+                    if (request.resource() == "/student")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Deleting student " << params.at("student_id")  << std::endl;
-                        if(db->deleteStudent(std::stoi(params.at("student_id"))))
+                        std::cout << "Deleting student " << params.at("student_id") << std::endl;
+                        if (db->deleteStudent(std::stoi(params.at("student_id"))))
                         {
                             std::cout << "Student was successfully deleted" << std::endl;
                             response.send(Http::Code::Ok);
-                        }
-                        else
+                        } else
                         {
                             std::cout << "Student failed to delete" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if(request.resource() == "/group")
+                    if (request.resource() == "/group")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Deleting group " << params.at("group_id")  << std::endl;
-                        if(db->deleteGroup(std::stoi(params.at("group_id"))))
+                        std::cout << "Deleting group " << params.at("group_id") << std::endl;
+                        if (db->deleteGroup(std::stoi(params.at("group_id"))))
                         {
                             std::cout << "Group was successfully deleted" << std::endl;
                             response.send(Http::Code::Ok);
-                        }
-                        else
+                        } else
                         {
                             std::cout << "Group failed to delete" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if(request.resource() == "/test")
+                    if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Deleting test " << params.at("test_id")  << std::endl;
-                        if(db->deleteTest(std::stoi(params.at("test_id"))))
+                        std::cout << "Deleting test " << params.at("test_id") << std::endl;
+                        if (db->deleteTest(std::stoi(params.at("test_id"))))
                         {
                             std::cout << "Test was successfully deleted" << std::endl;
                             response.send(Http::Code::Ok);
-                        }
-                        else
+                        } else
                         {
                             std::cout << "Test failed to delete" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
                 }
-            } else
+            }
+            else
             {
                 std::cout << "Bad token" << std::endl;
                 response.send(Http::Code::Unauthorized);
