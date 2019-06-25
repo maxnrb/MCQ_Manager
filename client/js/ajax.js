@@ -1,5 +1,7 @@
 'use strict';
 
+const addressIP = "http://10.16.1.164:8080";
+
 function ajaxRequest(type, request, callback, data = null) {
   let xhr;
 
@@ -17,15 +19,27 @@ function ajaxRequest(type, request, callback, data = null) {
     {
       case 200:
       case 201:
+        $("#main-page").css("display", "block");
         callback(xhr.responseText);
         break;
 
       case 401 :
-        document.getElementById('login-form').style.display = 'block';
+        document.location.href="login.html";
         break;
 
       case 403 :
-        document.getElementById('login-form').style.display = 'block';
+        document.location.href="login.html";
+        break;
+
+      case 404 :
+        $("#main-page").css("display", "block");
+
+        iziToast.show({
+          title: 'No data found !',
+          color: 'red',
+          position : "topRight"
+        });
+
         break;
 
       default:

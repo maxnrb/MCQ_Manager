@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/floating-labels.css" rel="stylesheet">
+
+    <style>
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="login-page" class="form-signin" style="display: block">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">MCQ Login</h1>
+    </div>
+
+    <div class="form-label-group">
+        <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+        <label for="username">Username</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" class="form-control" placeholder="Password" required>
+        <label for="password">Password</label>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" id="login-send">Sign in</button>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/js.cookie.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/authentication.js"></script>
+
+</body>
+
+</html>

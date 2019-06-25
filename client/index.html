@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Tab</title>
 
+    <link rel="stylesheet" href="tools/iziToast/dist/css/iziToast.min.css">
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="css/floating-labels.css" rel="stylesheet">
 
@@ -11,7 +13,7 @@
     <link href="tools/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
 
     <style>
-        body {
+        #main-page {
             padding-top: 80px; /* Whatever the height of your navbar is; the
                              default is 50px */
         }
@@ -19,65 +21,123 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-    <a class="navbar-brand" href="#">MCQ Manager</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<div id="main-page" style="display: block">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" >
+        <a class="navbar-brand" href="#">MCQ Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse nav-pills" id="navbarCollapse" role="tablist" style="justify-content: space-between">
 
-        <ul class="navbar-nav nav nav-pills" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#home" role="tab">Home</a>
-            </li>
+            <ul class="navbar-nav nav">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#home" role="tab">Home</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#create" role="tab">Create</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#create" role="tab">Create</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#manage" role="tab">Manage</a>
-            </li>
-        </ul>
-    </div>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#manage" role="tab">Manage</a>
+                </li>
 
-    <div class="float-right">
-        <button class="btn btn-outline-warning" type="submit">Admin</button>
-        <button class="btn btn-outline-danger" type="submit">Disconnect</button>
-    </div>
-</nav>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#admin" id="adminNav" role="tab">Admin</a>
+                </li>
+            </ul>
 
-<main role="main" class="container">
-
-    <div class="page-content tab-content">
-
-        <div class="card tab-pane fade" id="home" role="tabpanel">
+            <ul class="navbar-nav nav">
+                <li class="nav-item">
+                    <button class="btn btn-outline-danger" id="disconnect_btn" type="submit">Disconnect</button>
+                </li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="card tab-pane fade" id="create" role="tabpanel">
-            <div class="card-header">
-                <ul class="nav nav-pills" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="group_createBtn" data-toggle="pill" href="#create-group" role="tab">Group</a>
-                    </li>
+    <main role="main" class="container">
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="student_createBtn" data-toggle="pill" href="#create-student" role="tab">Student</a>
-                    </li>
+        <div class="page-content tab-content" style="display: block">
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="test_createBtn" data-toggle="pill" href="#create-test" role="tab">Test</a>
-                    </li>
-                </ul>
+            <!--    Home part    -->
+
+            <div class="card tab-pane fade show active" id="home" role="tabpanel">
+
+                <div class="card-body tab-content">
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-3 font-weight-normal">View test for a student :</h1>
+                    </div>
+
+                    <div class="form-label-group">
+                        <select id="home_group" class="form-control">
+                            <option selected disabled>Choose group ></option>
+                        </select>
+                    </div>
+
+                    <div class="form-label-group">
+                        <select id="home_student" class="form-control">
+                            <option selected disabled>Choose group first ></option>
+                        </select>
+                    </div>
+
+                    <div class="form-label-group">
+                        <select id="home_test" class="form-control">
+                            <option selected disabled>Choose group first ></option>
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-7" id="testPicture_div">
+                        </div>
+
+                        <div class="col">
+                            <div class="row" id="row_answer">
+                                <div class="col-1" id="col_question">
+
+                                    <div class="d-flex flex-column align-items-center col-12">
+                                        <div>Answer</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
 
             </div>
 
-            <div class="card-body tab-content">
-                <div class="tab-pane fade show active" id="create-group" role="tabpanel">
+            <!--    Creation form part    -->
 
+            <div class="card tab-pane fade" id="create" role="tabpanel">
+                <div class="card-header">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="group_createBtn" data-toggle="pill" href="#create-group" role="tab">Group</a>
+                        </li>
 
-                    <div class="page-element" id="group_form">
+                        <li class="nav-item">
+                            <a class="nav-link" id="student_createBtn" data-toggle="pill" href="#create-student" role="tab">Student</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="test_createBtn" data-toggle="pill" href="#create-test" role="tab">Test</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="card-body tab-content">
+
+                    <!--    Create group form    -->
+
+                    <div class="tab-pane fade show active" id="create-group" role="tabpanel">
+
                         <div class="text-center mb-4">
                             <h1 class="h3 mb-3 font-weight-normal">Create new group :</h1>
                         </div>
@@ -90,11 +150,10 @@
                         <button class="btn btn-lg btn-outline-success btn-block" id="group_send">Create</button>
                     </div>
 
-                </div>
+                    <!--    Create student form    -->
 
-                <div class="tab-pane fade" id="create-student" role="tabpanel">
+                    <div class="tab-pane fade" id="create-student" role="tabpanel">
 
-                    <div class="page-element" id="student_form">
                         <div class="text-center mb-4">
                             <h1 class="h3 mb-3 font-weight-normal">Create new student :</h1>
                         </div>
@@ -118,11 +177,10 @@
                         <button class="btn btn-lg btn-outline-success btn-block" id="student_send">Create</button>
                     </div>
 
-                </div>
+                    <!--    Create test form    -->
 
-                <div class="tab-pane fade" id="create-test" role="tabpanel">
+                    <div class="tab-pane fade" id="create-test" role="tabpanel">
 
-                    <div class="page-element" id="test_form">
                         <div class="text-center mb-4">
                             <h1 class="h3 mb-3 font-weight-normal">Create new test :</h1>
                         </div>
@@ -134,7 +192,7 @@
                         </div>
 
                         <div class="text-center mb-4">
-                            <input class="datepicker" placeholder="Choose date >"/>
+                            <input class="datepicker" id="createTest_date" placeholder="Choose date >"/>
                         </div>
 
                         <div class="form-label-group">
@@ -143,125 +201,223 @@
                         </div>
 
                         <button class="btn btn-lg btn-outline-success btn-block" id="test_send">Create</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--    Management part    -->
+
+            <div class="card tab-pane fade" id="manage" role="tabpanel">
+                <div class="card-header">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="group_manageBtn" data-toggle="pill" href="#manage-group" role="tab">Group</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="student_manageBtn" data-toggle="pill" href="#manage-student" role="tab">Student</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="test_manageBtn" data-toggle="pill" href="#manage-test" role="tab">Test</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="card-body tab-content">
+
+                    <!--    Manage group part   -->
+
+                    <div class="tab-pane fade show active" id="manage-group" role="tabpanel">
+                        <div class="panel-body">
+                            <div class="text-center mb-4">
+                                <h1 class="h3 mb-3 font-weight-normal">Manage group :</h1>
+                            </div>
+
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Group Name</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="group_tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
+                    <!--    Manage student part   -->
+
+                    <div class="tab-pane fade" id="manage-student" role="tabpanel">
+                        <div class="panel-body">
+                            <div class="text-center mb-4">
+                                <h1 class="h3 mb-3 font-weight-normal">Manage student :</h1>
+                            </div>
+
+                            <div class="form-label-group">
+                                <select id="group_manageStudentSelector" class="form-control">
+                                    <option selected disabled>Choose group ></option>
+                                </select>
+                            </div>
+
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">First name</th>
+                                    <th scope="col">Last name</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="student_tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!--    Manage test part   -->
+
+                    <div class="tab-pane fade" id="manage-test" role="tabpanel">
+                        <div class="panel-body">
+                            <div class="text-center mb-4">
+                                <h1 class="h3 mb-3 font-weight-normal">Manage test :</h1>
+                            </div>
+
+                            <div class="form-label-group">
+                                <select id="group_manageTestSelector" class="form-control">
+                                    <option selected disabled>Choose group ></option>
+                                </select>
+                            </div>
+
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="test_tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--    Admin part (user management)   -->
+
+            <div class="tab-pane fade" role="tabpanel" id="admin">
+                <div class="card">
+
+                    <div class="card-body tab-content">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Create new user :</h1>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="adminName" class="form-control" placeholder="Username" required autofocus>
+                            <label for="adminName">Username</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="password" id="adminPassword" class="form-control" placeholder="Password" required>
+                            <label for="adminPassword">Password</label>
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block" id="admin_send">Create</button>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+
+                    <div class="card-body tab-content">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-3 font-weight-normal">Admin list :</h1>
+                        </div>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="admin_tbody">
+
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card tab-pane fade" id="manage" role="tabpanel">
-            <div class="card-header">
-                <ul class="nav nav-pills" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="group_manageBtn" data-toggle="pill" href="#manage-group" role="tab">Group</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="student_manageBtn" data-toggle="pill" href="#manage-student" role="tab">Student</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="test_manageBtn" data-toggle="pill" href="#manage-test" role="tab">Test</a>
-                    </li>
-                </ul>
+        <div class="page-content tab-content" style="display: block;">
 
-            </div>
+            <div class="card tab-pane fade show active" id="manageTest" role="tabpanel">
 
-            <div class="card-body tab-content">
-                <div class="tab-pane fade show active" id="manage-group" role="tabpanel">
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Group Name</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody id="group_tbody">
+                <div class="card card-header">
 
-                            </tbody>
-                        </table>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-warning" id="correct_allBtn">Correct all</button>
+                            </div>
+
+                            <div class="col">
+                                <button class="btn btn-primary" id="grade_allBtn">Get all grade</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="manage-student" role="tabpanel">
-                    <div>
-                        <div class="text-center mb-4">
-                            <h1 class="h3 mb-3 font-weight-normal">Manage student :</h1>
-                        </div>
-
-                        <div class="form-label-group">
-                            <select id="group_manageStudentSelector" class="form-control">
-                                <option selected disabled>Choose group ></option>
-                            </select>
-                        </div>
+                <div class="card-body tab-content">
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-3 font-weight-normal">List of student :</h1>
                     </div>
 
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Group</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody id="student_tbody">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Grade</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="testStudent_tbody">
 
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-                <div class="tab-pane fade" id="manage-test" role="tabpanel">
-                    <div>
-                        <div class="text-center mb-4">
-                            <h1 class="h3 mb-3 font-weight-normal">Manage test :</h1>
-                        </div>
-
-                        <div class="form-label-group">
-                            <select id="group_manageTestSelector" class="form-control">
-                                <option selected disabled>Choose group ></option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Name</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody id="test_tbody">
-
-                            </tbody>
-                        </table>
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-
-    </div>
-
-</main>
+    </main>
 
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<script src="js/ajax.js"></script>
+<script src="tools/iziToast/dist/js/iziToast.min.js" type="text/javascript"></script>
+
 <script src="js/js.cookie.js"></script>
+<script src="js/ajax.js"></script>
 <script src="js/authentication.js"></script>
 <script src="js/client-final.js"></script>
 
@@ -271,6 +427,42 @@
     $('.datepicker').datepicker({
         uiLibrary: 'bootstrap4'
     });
+</script>
+
+<script>
+    let nbAnswer = 5;
+    let nbQuestion = 10;
+
+    for(let column = 0; column <= nbAnswer; column++) {
+        if (column !== 0) {
+            $('#row_answer').append(
+                '<div class="col" id="col_answer' + column + '">' +
+                '<div class="d-flex flex-column align-items-center col">' + column +
+                '</div>' +
+                '</div>'
+            );
+        }
+
+        for(let line = 1; line <=nbQuestion; line++) {
+
+            if(column === 0) {
+                $('#col_question').append(
+                    '<div class="d-flex flex-column align-items-baseline col">Q' + line +'</div>'
+                );
+            } else {
+                $('#col_answer' + column).append(
+                '<div class="custom-control custom-checkbox">' +
+                    '<input type="checkbox" class="custom-control-input" id="Q' + column + 'A' + line +'">' +
+                    '<label class="custom-control-label" for="Q' + column + 'A' + line +'"></label>' +
+                    '</div>'
+                );
+            }
+        }
+    }
+
+// TODO : Requete a chaque clique sur case ou bouton valider ?
+
+
 </script>
 
 </body>
