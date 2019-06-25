@@ -55,10 +55,18 @@ string Utils::generateRandomString(const int len) {
  */
 string Utils::getBase64ImgFromUrl(string url, int argc, char** argv)
 {
-    QApplication* app = new QApplication(argc, argv);
+    QCoreApplication app(argc, argv);
     ImageDownloader* downloader = new ImageDownloader(url);
-    app->exec();
+    app.exec();
     string b64  = downloader->getBase64();
-    delete app;
     return b64;
+}
+
+QImage Utils::getImageFromUrl(string url, int argc, char** argv)
+{
+    QCoreApplication app(argc, argv);
+    ImageDownloader* downloader = new ImageDownloader(url);
+    app.exec();
+    delete downloader;
+    return downloader->getImage();
 }

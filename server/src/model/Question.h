@@ -23,6 +23,9 @@ public:
     Question(int id, int questionNumber, int test_id) : id(id), question_number(questionNumber), test_id(test_id)
     {}
 
+    int getTestId() const{return test_id;}
+    void setTestId(int testId){test_id = testId;}
+
     int getId() const{return id;}
     void setId(int id){Question::id = id;}
 

@@ -16,9 +16,14 @@ private:
     int answer_number;
     bool good_answer;
 
+    int question_id;
+
 public:
     Answer(int id, int answerNumber, bool goodAnswer) : id(id), answer_number(answerNumber), good_answer(goodAnswer)
     {}
+
+    int getQuestionId() const{return question_id;}
+    void setQuestionId(int questionId){question_id = questionId;}
 
     int getId() const{return id;}
     void setId(int id){Answer::id = id;}

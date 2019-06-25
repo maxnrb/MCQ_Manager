@@ -190,6 +190,33 @@ src/Database.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Database.cpp.s
 .PHONY : src/Database.cpp.s
 
+src/Qt/QtTest.o: src/Qt/QtTest.cpp.o
+
+.PHONY : src/Qt/QtTest.o
+
+# target to build an object file
+src/Qt/QtTest.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Qt/QtTest.cpp.o
+.PHONY : src/Qt/QtTest.cpp.o
+
+src/Qt/QtTest.i: src/Qt/QtTest.cpp.i
+
+.PHONY : src/Qt/QtTest.i
+
+# target to preprocess a source file
+src/Qt/QtTest.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Qt/QtTest.cpp.i
+.PHONY : src/Qt/QtTest.cpp.i
+
+src/Qt/QtTest.s: src/Qt/QtTest.cpp.s
+
+.PHONY : src/Qt/QtTest.s
+
+# target to generate assembly for a file
+src/Qt/QtTest.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Qt/QtTest.cpp.s
+.PHONY : src/Qt/QtTest.cpp.s
+
 src/Server.o: src/Server.cpp.o
 
 .PHONY : src/Server.o
@@ -243,168 +270,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/model/Answer.o: src/model/Answer.cpp.o
-
-.PHONY : src/model/Answer.o
-
-# target to build an object file
-src/model/Answer.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.o
-.PHONY : src/model/Answer.cpp.o
-
-src/model/Answer.i: src/model/Answer.cpp.i
-
-.PHONY : src/model/Answer.i
-
-# target to preprocess a source file
-src/model/Answer.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.i
-.PHONY : src/model/Answer.cpp.i
-
-src/model/Answer.s: src/model/Answer.cpp.s
-
-.PHONY : src/model/Answer.s
-
-# target to generate assembly for a file
-src/model/Answer.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Answer.cpp.s
-.PHONY : src/model/Answer.cpp.s
-
-src/model/Group.o: src/model/Group.cpp.o
-
-.PHONY : src/model/Group.o
-
-# target to build an object file
-src/model/Group.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Group.cpp.o
-.PHONY : src/model/Group.cpp.o
-
-src/model/Group.i: src/model/Group.cpp.i
-
-.PHONY : src/model/Group.i
-
-# target to preprocess a source file
-src/model/Group.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Group.cpp.i
-.PHONY : src/model/Group.cpp.i
-
-src/model/Group.s: src/model/Group.cpp.s
-
-.PHONY : src/model/Group.s
-
-# target to generate assembly for a file
-src/model/Group.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Group.cpp.s
-.PHONY : src/model/Group.cpp.s
-
-src/model/Question.o: src/model/Question.cpp.o
-
-.PHONY : src/model/Question.o
-
-# target to build an object file
-src/model/Question.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.o
-.PHONY : src/model/Question.cpp.o
-
-src/model/Question.i: src/model/Question.cpp.i
-
-.PHONY : src/model/Question.i
-
-# target to preprocess a source file
-src/model/Question.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.i
-.PHONY : src/model/Question.cpp.i
-
-src/model/Question.s: src/model/Question.cpp.s
-
-.PHONY : src/model/Question.s
-
-# target to generate assembly for a file
-src/model/Question.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Question.cpp.s
-.PHONY : src/model/Question.cpp.s
-
-src/model/Student.o: src/model/Student.cpp.o
-
-.PHONY : src/model/Student.o
-
-# target to build an object file
-src/model/Student.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.o
-.PHONY : src/model/Student.cpp.o
-
-src/model/Student.i: src/model/Student.cpp.i
-
-.PHONY : src/model/Student.i
-
-# target to preprocess a source file
-src/model/Student.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.i
-.PHONY : src/model/Student.cpp.i
-
-src/model/Student.s: src/model/Student.cpp.s
-
-.PHONY : src/model/Student.s
-
-# target to generate assembly for a file
-src/model/Student.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.s
-.PHONY : src/model/Student.cpp.s
-
-src/model/StudentAnswer.o: src/model/StudentAnswer.cpp.o
-
-.PHONY : src/model/StudentAnswer.o
-
-# target to build an object file
-src/model/StudentAnswer.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.o
-.PHONY : src/model/StudentAnswer.cpp.o
-
-src/model/StudentAnswer.i: src/model/StudentAnswer.cpp.i
-
-.PHONY : src/model/StudentAnswer.i
-
-# target to preprocess a source file
-src/model/StudentAnswer.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.i
-.PHONY : src/model/StudentAnswer.cpp.i
-
-src/model/StudentAnswer.s: src/model/StudentAnswer.cpp.s
-
-.PHONY : src/model/StudentAnswer.s
-
-# target to generate assembly for a file
-src/model/StudentAnswer.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.s
-.PHONY : src/model/StudentAnswer.cpp.s
-
-src/model/Test.o: src/model/Test.cpp.o
-
-.PHONY : src/model/Test.o
-
-# target to build an object file
-src/model/Test.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.o
-.PHONY : src/model/Test.cpp.o
-
-src/model/Test.i: src/model/Test.cpp.i
-
-.PHONY : src/model/Test.i
-
-# target to preprocess a source file
-src/model/Test.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.i
-.PHONY : src/model/Test.cpp.i
-
-src/model/Test.s: src/model/Test.cpp.s
-
-.PHONY : src/model/Test.s
-
-# target to generate assembly for a file
-src/model/Test.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Test.cpp.s
-.PHONY : src/model/Test.cpp.s
 
 src/utils/Utils.o: src/utils/Utils.cpp.o
 
@@ -503,30 +368,15 @@ help:
 	@echo "... src/Database.o"
 	@echo "... src/Database.i"
 	@echo "... src/Database.s"
+	@echo "... src/Qt/QtTest.o"
+	@echo "... src/Qt/QtTest.i"
+	@echo "... src/Qt/QtTest.s"
 	@echo "... src/Server.o"
 	@echo "... src/Server.i"
 	@echo "... src/Server.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/model/Answer.o"
-	@echo "... src/model/Answer.i"
-	@echo "... src/model/Answer.s"
-	@echo "... src/model/Group.o"
-	@echo "... src/model/Group.i"
-	@echo "... src/model/Group.s"
-	@echo "... src/model/Question.o"
-	@echo "... src/model/Question.i"
-	@echo "... src/model/Question.s"
-	@echo "... src/model/Student.o"
-	@echo "... src/model/Student.i"
-	@echo "... src/model/Student.s"
-	@echo "... src/model/StudentAnswer.o"
-	@echo "... src/model/StudentAnswer.i"
-	@echo "... src/model/StudentAnswer.s"
-	@echo "... src/model/Test.o"
-	@echo "... src/model/Test.i"
-	@echo "... src/model/Test.s"
 	@echo "... src/utils/Utils.o"
 	@echo "... src/utils/Utils.i"
 	@echo "... src/utils/Utils.s"

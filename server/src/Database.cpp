@@ -222,7 +222,7 @@ bool Database::setCorrected(int student_id, int test_id)
 /************************************************************************************************\
  * Tests
 \************************************************************************************************/
-bool Database::addTest(string name, string group, string date, int user)
+int Database::addTest(string name, string group, string date, int user)
 {
     try
     {
@@ -230,10 +230,18 @@ bool Database::addTest(string name, string group, string date, int user)
         date = dates.at(2)+"-"+dates.at(0)+"-"+dates.at(1);
         soci::statement query = session->prepare << "INSERT INTO tests (name, date, group_id, user_id) VALUES('" + name + "', '"+date+"', '" + group + "', '"+std::to_string(user)+"')";
         query.execute(false);
-        return true;
+
+        soci::row row;
+
+        query = (session->prepare << "SELECT id FROM tests WHERE name='"+name+"' AND group_id='"+group+"'", soci::into(row));
+        query.execute(true);
+
+
+        return row.get<int>(0);
+
     }catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
-        return false;
+        return -1;
     }
 }
 
@@ -253,6 +261,7 @@ vector<Test*> Database::getTests(int group_id)
             do
             {
                 Test *test = new Test(group_row.get<int>(0), group_row.get<string>(1), group_row.get<string>(2), group_row.get<int>(3));
+                test->setQuestions(getQuestionsByTest(test->getId()));
                 tests.push_back(test);
             } while (query.fetch());
         }
@@ -334,6 +343,7 @@ Test* Database::getTestById(int id)
         if(query.got_data())
         {
             Test *test = new Test(group_row.get<int>(0), group_row.get<string>(1), group_row.get<string>(2), group_row.get<int>(3));
+            test->setQuestions(getQuestionsByTest(test->getId()));
             return test;
         }
     }catch (const std::exception &e){
@@ -373,7 +383,7 @@ bool Database::deleteTest(int id)
     }
 }
 
-bool Database::addQuestion(int test, int scale)
+int Database::addQuestion(int test, int scale)
 {
     try
     {
@@ -381,10 +391,17 @@ bool Database::addQuestion(int test, int scale)
 
         soci::statement query = session->prepare << "INSERT INTO questions (question_number, scale, test_id) VALUES('"+std::to_string(number)+"', '"+std::to_string(scale)+"', '"+std::to_string(test)+"')";
         query.execute(false);
-        return true;
+
+        soci::row row;
+
+        query = (session->prepare << "SELECT id FROM questions WHERE question_number='"+std::to_string(number)+"' AND test_id='"+std::to_string(test)+"'", soci::into(row));
+        query.execute(true);
+
+
+        return row.get<int>(0);
     }catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
-        return false;
+        return -1;
     }
 }
 
@@ -398,6 +415,20 @@ bool Database::addAnswerToQuestion(int question, bool isGood)
         return true;
     }catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+bool Database::modifyAnswer(int id, bool good)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "UPDATE answer SET good_answer='" << ((good)?"1":"0") << "' WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
         return false;
     }
 }
@@ -479,21 +510,7 @@ vector<Question*> Database::getQuestionsByTest(int test)
                 Question *question = new Question(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2));
                 questions.push_back(question);
 
-                soci::row answer_row;
-
-                soci::statement queryA = (session->prepare
-                        << "SELECT id,answer_number,good_answer FROM answer WHERE question_id='"+std::to_string(group_row.get<int>(0))+"'",
-                        soci::into(answer_row));
-                queryA.execute(true);
-
-                if(queryA.got_data())
-                {
-                    do
-                    {
-                        Answer* answer = new Answer(answer_row.get<int>(0), answer_row.get<int>(1), answer_row.get<my_bool>(2));
-                        question->addAnswer(answer);
-                    }while (queryA.fetch());
-                }
+                question->setAnswers(getAnswersByQuestion(question->getId()));
 
             } while (query.fetch());
         }
@@ -519,6 +536,7 @@ vector<Answer*> Database::getAnswersByQuestion(int question)
             do
             {
                 Answer *an = new Answer(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2));
+                an->setQuestionId(question);
                 answers.push_back(an);
             } while (query.fetch());
         }
@@ -568,6 +586,35 @@ Question* Database::getQuestionById(int id)
         std::cout << "Error: " << e.what() << std::endl;
     }
     return nullptr;
+}
+
+Answer* Database::getAnswerById(int id)
+{
+    try
+    {
+        soci::row answer_row;
+
+        soci::statement queryA = (session->prepare
+                << "SELECT id,answer_number,good_answer,question_id FROM answer WHERE id='" +
+                   std::to_string(id) + "'",
+                soci::into(answer_row));
+        queryA.execute(true);
+
+        if (queryA.got_data())
+        {
+            do
+            {
+                Answer *answer = new Answer(answer_row.get<int>(0), answer_row.get<int>(1), answer_row.get<int>(2));
+                answer->setQuestionId(answer_row.get<int>(3));
+                return answer;
+            } while (queryA.fetch());
+        }
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        return nullptr;
+    }
+    return nullptr;
+
 }
 
 /************************************************************************************************\

@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <QImage>
 
 using std::vector;
 using std::string;
@@ -16,6 +17,7 @@ public:
     static const vector<string> explode(const string& s, const char& c);
     static string generateRandomString(const int len);
     static string getBase64ImgFromUrl(string url, int argc, char** argv);
+    static QImage getImageFromUrl(string url, int argc, char** argv);
     /**
      * Return true if @s1 contains @s2
      * @param s1

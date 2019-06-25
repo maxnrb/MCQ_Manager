@@ -20,6 +20,7 @@ private:
     int group_id;
 
     bool corrected = false;
+    int grade = -1;
 
 public:
     Student(int id, const string &firstName, const string &lastName, int groupId) : id(id), first_name(firstName),
@@ -28,6 +29,9 @@ public:
     {}
     void setCorrected(bool corrected){this->corrected = corrected;}
     bool isCorrected(){return this->corrected;}
+
+    int getGrade() const{return grade;}
+    void setGrade(int note){Student::grade = note;}
 
     int getId() const{return id;}
     void setId(int id){Student::id = id;}
@@ -50,6 +54,7 @@ public:
         json += "\"corrected\":\"";
         json += ((corrected)?"1":"0");
         json += "\",";
+        json += "\"grade\":\""+ std::to_string(grade) +"\",";
         json += "\"group_id\":\""+ std::to_string(group_id) +"\"";
         json += "}";
         return json;

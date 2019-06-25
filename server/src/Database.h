@@ -49,7 +49,7 @@ public:
     bool setParticipate(int student_id, int test_id);
     bool setCorrected(int student_id, int test_id);
 
-    bool addTest(string name, string group, string date, int user);
+    int addTest(string name, string group, string date, int user);
     vector<Test*> getTests(int group_id);
     vector<Test*> getTestsByStudent(int student_id);
     vector<Student*> getStudentsByTest(int test_id);
@@ -57,14 +57,16 @@ public:
     bool modifyTest(int id, string name, string date);
     bool deleteTest(int id);
 
-    bool addQuestion(int test, int scale);
+    int addQuestion(int test, int scale);
     bool addAnswerToQuestion(int question, bool isGood);
     bool addStudentAnswer(int student, int answer, bool state);
     vector<StudentAnswer*> getStudentAnswersByQuestion(int question, int student);
     bool modifyStudentAnswer(int student, int answer, bool state);
     vector<Question*> getQuestionsByTest(int test);
     vector<Answer*> getAnswersByQuestion(int question);
+    bool modifyAnswer(int id, bool good);
     Question* getQuestionById(int id);
+    Answer* getAnswerById(int id);
 
 
 

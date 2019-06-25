@@ -20,7 +20,7 @@ class ImageGetter : public QObject
 private:
     QString url;
     FileDownloader* m_pImgCtrl;
-    QPixmap buttonImage;
+    QImage buttonImage;
     bool downloaded = false;
 public:
     ImageGetter(const QString &url) : url(url){
@@ -34,7 +34,7 @@ public:
         delete m_pImgCtrl;
     }
 
-    const QPixmap &getImage() const{return buttonImage;}
+    QImage getImage() {return buttonImage;}
 
     bool isDownloaded() const{return downloaded;}
 

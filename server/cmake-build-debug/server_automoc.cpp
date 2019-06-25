@@ -2,3 +2,4 @@
 #include "server_automoc.dir/moc_FileDownloader_5QBHBXH5VKULOZ.cpp"
 #include "server_automoc.dir/moc_ImageDownloade_JNXBBFWVHTWZ7Y.cpp"
 #include "server_automoc.dir/moc_ImageGetter_QMT3A3EPYWHR4V.cpp"
+#include "server_automoc.dir/moc_QtTest_LZ4C2WAIEC5LTZ.cpp"

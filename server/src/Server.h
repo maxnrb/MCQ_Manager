@@ -12,11 +12,13 @@
 #include "headers/Authorization.h"
 #include "utils/base64.h"
 #include "Qt/ImageDownloader.h"
+#include "Qt/QtTest.h"
 
 #include <iostream>
 #include <map>
 #include <vector>
 #include <string>
+#include <QApplication>
 
 using namespace Pistache;
 
@@ -144,6 +146,29 @@ HTTP_PROTOTYPE(Server)
 
                             if(!participate) db->setParticipate(student_id, test_id);
                             response.send(Http::Code::Ok, b64);
+                        }
+                        else
+                        {
+                            response.send(Http::Code::Not_Found);
+                        }
+                    }
+                    else if (request.resource() == "/correction")
+                    {
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        int student_id = std::stoi(request.query().get("student_id").get());
+                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
+
+                        if(b64 != "")
+                        {
+                            QImage pixmap = Utils::getImageFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
+                            QtTest* test = new QtTest(pixmap);
+
+                            std::cout << test->getNbQuestions() << std::endl;
+                            std::cout << test->getNbAnswer() << std::endl;
+
+                            delete test;
+
+                            response.send(Http::Code::Ok);
                         }
                         else
                         {
@@ -364,17 +389,30 @@ HTTP_PROTOTYPE(Server)
                     else if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Creating test named " << params.at("name") << " for " << params.at("group_id")
-                                  << " at " << params.at("date") << std::endl;
-                        if (db->addTest(params.at("name"), params.at("group_id"), params.at("date"),
-                                        db->getUserIdByToken(token)))
+                        std::cout << "Creating test named " << params.at("name") << " for " << params.at("group_id") << " with " << params.at("nb_questions")
+                                  << " questions with " << params.at("nb_answers") << " at " << params.at("date") << std::endl;
+                        int test_id = db->addTest(params.at("name"), params.at("group_id"), params.at("date"), db->getUserIdByToken(token));
+                        if (test_id != -1)
                         {
+                            for(int i = 0; i < std::stoi(params.at(("nb_questions"))); i++)
+                            {
+                                int question_id = db->addQuestion(test_id, 1);
+                                for(int j = 0; j < std::stoi(params.at(("nb_answers"))); j++)
+                                {
+                                    db->addAnswerToQuestion(question_id, false);
+                                }
+                            }
                             std::cout << "Test creation success" << std::endl;
                             response.send(Http::Code::Ok);
                         } else
                         {
                             std::cout << "Test creation failed" << std::endl;
                             response.send(Http::Code::Bad_Request);
+                        }
+                        vector<Student*> students = db->getStudents(std::stoi(params.at("group_id")));
+                        for(Student* student : students)
+                        {
+                            db->setParticipate(student->getId(), test_id);
                         }
                     }
 
@@ -383,7 +421,7 @@ HTTP_PROTOTYPE(Server)
                         map<string, string> params = parseParameters(request.body());
 
                         std::cout << "Adding question to test " << params.at("test_id") << " with scale " << params.at("scale") << std::endl;
-                        if (db->addQuestion(stoi(params.at("test_id")), stoi(params.at("scale"))))
+                        if (db->addQuestion(stoi(params.at("test_id")), stoi(params.at("scale"))) != -1)
                         {
                             std::cout << "Question creation success" << std::endl;
                             response.send(Http::Code::Ok);
@@ -460,6 +498,36 @@ HTTP_PROTOTYPE(Server)
                             } else
                             {
                                 std::cout << "Test failed to modify" << std::endl;
+                                response.send(Http::Code::Bad_Request);
+                            }
+                        }
+                        else
+                        {
+                            std::cout << "Test cannot be managed by user (unauthorized)" << std::endl;
+                            response.send(Http::Code::Forbidden);
+                        }
+
+                        delete test;
+                    }
+                    else if (request.resource() == "/answer")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        int answer_id = std::stoi(params.at("answer_id"));
+
+                        Answer* answer = db->getAnswerById(answer_id);
+                        Question* question = db->getQuestionById(answer->getQuestionId());
+                        Test* test = db->getTestById(question->getTestId());
+
+                        if(test->getUserId() == db->getUserIdByToken(token))
+                        {
+                            std::cout << "Update answer " << params.at("answer_id") << std::endl;
+                            if (db->modifyAnswer(answer_id, (params.at("isgood") == "1")?1:0))
+                            {
+                                std::cout << "Answer was successfully modified" << std::endl;
+                                response.send(Http::Code::Ok);
+                            } else
+                            {
+                                std::cout << "Answer failed to modify" << std::endl;
                                 response.send(Http::Code::Bad_Request);
                             }
                         }

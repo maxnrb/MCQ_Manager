@@ -14,13 +14,13 @@
 
 using std::string;
 
-class ImageDownloader : public QMainWindow
+class ImageDownloader : public QObject
 {
     Q_OBJECT
 private:
     ImageGetter* getter;
     string base64;
-    QPixmap pixmap;
+    QImage image;
 public:
     ImageDownloader(string url)
     {
@@ -41,17 +41,22 @@ public:
         }
     }
 
+    QImage getImage()
+    {
+        return image;
+    }
+
 public slots:
     void loadImage()
     {
         std::cout << "Image Downloaded" << std::endl;
-        pixmap = getter->getImage();
+        image = getter->getImage();
         QBuffer buffer;
         buffer.open(QIODevice::WriteOnly);
         getter->getImage().save(&buffer, "JPG");
         QByteArray const encoded = buffer.data().toBase64();
         base64 = "data:image/jpg;base64, " + encoded.toStdString();
-        this->close();
+        qApp->exit();
     };
 };
 

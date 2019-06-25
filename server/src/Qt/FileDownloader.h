@@ -42,7 +42,7 @@ private slots:
     void fileDownloaded(QNetworkReply* pReply) {
         m_DownloadedData = pReply->readAll();
         //emit a signal
-        pReply->deleteLater();
+        //pReply->deleteLater();
         emit downloaded();
     }
 

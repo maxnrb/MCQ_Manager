@@ -12,7 +12,7 @@ find_package(Qt5Network CONFIG REQUIRED)
 
 file (GLOB_RECURSE Project_files src/*.cpp src/*.h)
 
-add_executable(server ${Project_files} src/model/StudentAnswer.cpp src/model/StudentAnswer.h)
+add_executable(server ${Project_files} src/model/StudentAnswer.h)
 
 target_link_libraries(server pistache)
 target_link_libraries(server soci_core soci_mysql)

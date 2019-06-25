@@ -74,7 +74,7 @@ void ImageDownloader::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 }
 
 const QMetaObject ImageDownloader::staticMetaObject = {
-    { &QMainWindow::staticMetaObject, qt_meta_stringdata_ImageDownloader.data,
+    { &QObject::staticMetaObject, qt_meta_stringdata_ImageDownloader.data,
       qt_meta_data_ImageDownloader,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -89,12 +89,12 @@ void *ImageDownloader::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_ImageDownloader.stringdata0))
         return static_cast<void*>(const_cast< ImageDownloader*>(this));
-    return QMainWindow::qt_metacast(_clname);
+    return QObject::qt_metacast(_clname);
 }
 
 int ImageDownloader::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QMainWindow::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
