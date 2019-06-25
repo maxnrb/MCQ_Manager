@@ -17,6 +17,9 @@ private:
     bool good_answer;
 
 public:
+    Answer(int id, int answerNumber, bool goodAnswer) : id(id), answer_number(answerNumber), good_answer(goodAnswer)
+    {}
+
     int getId() const{return id;}
     void setId(int id){Answer::id = id;}
 

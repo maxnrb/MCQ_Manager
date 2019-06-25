@@ -19,11 +19,15 @@ private:
 
     int group_id;
 
+    bool corrected = false;
+
 public:
     Student(int id, const string &firstName, const string &lastName, int groupId) : id(id), first_name(firstName),
                                                                                     last_name(lastName),
                                                                                     group_id(groupId)
     {}
+    void setCorrected(bool corrected){this->corrected = corrected;}
+    bool isCorrected(){return this->corrected;}
 
     int getId() const{return id;}
     void setId(int id){Student::id = id;}
@@ -43,6 +47,9 @@ public:
         json += "\"id\":\""+ std::to_string(id) +"\",";
         json += "\"first_name\":\""+ first_name +"\",";
         json += "\"last_name\":\""+ last_name +"\",";
+        json += "\"corrected\":\"";
+        json += ((corrected)?"1":"0");
+        json += "\",";
         json += "\"group_id\":\""+ std::to_string(group_id) +"\"";
         json += "}";
         return json;

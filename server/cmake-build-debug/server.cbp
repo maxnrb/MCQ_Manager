@@ -129,12 +129,6 @@
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Database.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.cpp">
-			<Option target="server"/>
-		</Unit>
-		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/HelloHandler.h">
-			<Option target="server"/>
-		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Qt/FileDownloader.h">
 			<Option target="server"/>
 		</Unit>
@@ -142,6 +136,12 @@
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Qt/ImageGetter.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Server.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/Server.h">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/headers/Authorization.h">
@@ -175,6 +175,12 @@
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Student.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/StudentAnswer.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/StudentAnswer.h">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/mnt/d/wamp64/www/MCQ_Manager/server/src/model/Test.cpp">

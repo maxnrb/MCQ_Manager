@@ -20,6 +20,8 @@ private:
     string date;
     int user_id;
 
+    bool corrected= false;
+
     vector<Question*> questions;
 
 public:
@@ -28,6 +30,9 @@ public:
                                                                                                             date(date),
                                                                                                             user_id(userId)
     {}
+
+    void setCorrected(bool corrected){this->corrected = corrected;}
+    bool isCorrected(){return this->corrected;}
 
     int getId() const{return id;}
     void setId(int id){Test::id = id;}
@@ -52,6 +57,9 @@ public:
         json += "\"name\":\""+name+"\",";
         json += "\"date\":\""+date+"\",";
         json += "\"user_id\":\""+std::to_string(user_id)+"\",";
+        json += "\"corrected\":\"";
+        json += ((corrected)?"1":"0");
+        json += "\",";
         json += "\"questions\":[";
         for(Question* question : questions)
         {

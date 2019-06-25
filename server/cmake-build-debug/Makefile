@@ -190,32 +190,32 @@ src/Database.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Database.cpp.s
 .PHONY : src/Database.cpp.s
 
-src/HelloHandler.o: src/HelloHandler.cpp.o
+src/Server.o: src/Server.cpp.o
 
-.PHONY : src/HelloHandler.o
+.PHONY : src/Server.o
 
 # target to build an object file
-src/HelloHandler.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HelloHandler.cpp.o
-.PHONY : src/HelloHandler.cpp.o
+src/Server.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.o
+.PHONY : src/Server.cpp.o
 
-src/HelloHandler.i: src/HelloHandler.cpp.i
+src/Server.i: src/Server.cpp.i
 
-.PHONY : src/HelloHandler.i
+.PHONY : src/Server.i
 
 # target to preprocess a source file
-src/HelloHandler.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HelloHandler.cpp.i
-.PHONY : src/HelloHandler.cpp.i
+src/Server.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.i
+.PHONY : src/Server.cpp.i
 
-src/HelloHandler.s: src/HelloHandler.cpp.s
+src/Server.s: src/Server.cpp.s
 
-.PHONY : src/HelloHandler.s
+.PHONY : src/Server.s
 
 # target to generate assembly for a file
-src/HelloHandler.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/HelloHandler.cpp.s
-.PHONY : src/HelloHandler.cpp.s
+src/Server.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.s
+.PHONY : src/Server.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -352,6 +352,33 @@ src/model/Student.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/Student.cpp.s
 .PHONY : src/model/Student.cpp.s
 
+src/model/StudentAnswer.o: src/model/StudentAnswer.cpp.o
+
+.PHONY : src/model/StudentAnswer.o
+
+# target to build an object file
+src/model/StudentAnswer.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.o
+.PHONY : src/model/StudentAnswer.cpp.o
+
+src/model/StudentAnswer.i: src/model/StudentAnswer.cpp.i
+
+.PHONY : src/model/StudentAnswer.i
+
+# target to preprocess a source file
+src/model/StudentAnswer.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.i
+.PHONY : src/model/StudentAnswer.cpp.i
+
+src/model/StudentAnswer.s: src/model/StudentAnswer.cpp.s
+
+.PHONY : src/model/StudentAnswer.s
+
+# target to generate assembly for a file
+src/model/StudentAnswer.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/model/StudentAnswer.cpp.s
+.PHONY : src/model/StudentAnswer.cpp.s
+
 src/model/Test.o: src/model/Test.cpp.o
 
 .PHONY : src/model/Test.o
@@ -476,9 +503,9 @@ help:
 	@echo "... src/Database.o"
 	@echo "... src/Database.i"
 	@echo "... src/Database.s"
-	@echo "... src/HelloHandler.o"
-	@echo "... src/HelloHandler.i"
-	@echo "... src/HelloHandler.s"
+	@echo "... src/Server.o"
+	@echo "... src/Server.i"
+	@echo "... src/Server.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -494,6 +521,9 @@ help:
 	@echo "... src/model/Student.o"
 	@echo "... src/model/Student.i"
 	@echo "... src/model/Student.s"
+	@echo "... src/model/StudentAnswer.o"
+	@echo "... src/model/StudentAnswer.i"
+	@echo "... src/model/StudentAnswer.s"
 	@echo "... src/model/Test.o"
 	@echo "... src/model/Test.i"
 	@echo "... src/model/Test.s"

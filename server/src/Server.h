@@ -23,7 +23,7 @@ using namespace Pistache;
 using std::map;
 using std::string;
 
-class HelloHandler : public Http::Handler
+class Server : public Http::Handler
 {
 private:
     Database *db;
@@ -32,15 +32,15 @@ private:
     char** argv;
 public:
 
-HTTP_PROTOTYPE(HelloHandler)
+HTTP_PROTOTYPE(Server)
     string b64;
-    HelloHandler(int argc, char** argv) : argc(argc), argv(argv)
+    Server(int argc, char** argv) : argc(argc), argv(argv)
     {
         db = new Database("127.0.0.1", "mcq_user", "mcq_password");
         db->connect();
     }
 
-    ~HelloHandler()
+    ~Server()
     {
         delete db;
     }
@@ -56,7 +56,7 @@ HTTP_PROTOTYPE(HelloHandler)
         return parsed;
     }
 
-    void onRequest(const Http::Request &request, Http::ResponseWriter response)
+    void onRequest(const Http::Request &request, Http::ResponseWriter response) override
     {
         response.headers().add<Http::Header::AccessControlAllowOrigin>("*");
         response.headers().add<CORS>("true");
@@ -72,6 +72,7 @@ HTTP_PROTOTYPE(HelloHandler)
             response.headers().add<Http::Header::AccessControlAllowMethods>("GET, POST, PUT, DELETE");
             response.send(Http::Code::Ok);
         }
+
             //If authenticate request
         else if (request.resource() == "/authenticate")
         {
@@ -123,12 +124,37 @@ HTTP_PROTOTYPE(HelloHandler)
 
                 if (request.method() == Http::Method::Get)
                 {
-                    if (request.resource() == "/image")
+                    if (request.resource() == "/test_image")
                     {
-                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/2/10.jpg", argc, argv);
-                        response.send(Http::Code::Ok, b64);
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        int student_id = std::stoi(request.query().get("student_id").get());
+                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
+
+                        if(b64 != "")
+                        {
+                            vector<Test*> tests = db->getTestsByStudent(student_id);
+                            bool participate = false;
+                            for(Test* t : tests)
+                            {
+                                if(t->getId() == test_id)
+                                {
+                                    participate = true;
+                                }
+                            }
+
+                            if(!participate) db->setParticipate(student_id, test_id);
+                            response.send(Http::Code::Ok, b64);
+                        }
+                        else
+                        {
+                            response.send(Http::Code::Not_Found);
+                        }
                     }
-                    if (request.resource() == "/groups")
+                    else if (request.resource() == "/users")
+                    {
+                        response.send(Http::Code::Ok, db->getUsersSerialized());
+                    }
+                    else if (request.resource() == "/groups")
                     {
                         vector<Group *> groups = db->getGroups();
                         if (groups.size() != 0)
@@ -156,7 +182,7 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Not_Found);
                         }
                     }
-                    if (request.resource() == "/students")
+                    else if (request.resource() == "/students")
                     {
                         int group_id = std::stoi(request.query().get("group_id").get());
                         vector<Student *> students = db->getStudents(group_id);
@@ -186,7 +212,7 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Not_Found);
                         }
                     }
-                    if(request.resource() == "/tests")
+                    else if(request.resource() == "/tests")
                     {
                         int group_id = std::stoi(request.query().get("group_id").get());
                         vector<Test *> tests = db->getTests(group_id);
@@ -216,9 +242,75 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Not_Found);
                         }
                     }
+                    else if(request.resource() == "/participations")
+                    {
+                        int student_id = std::stoi(request.query().get("student_id").get());
+                        vector<Test *> tests = db->getTestsByStudent(student_id);
+
+                        if (tests.size() != 0)
+                        {
+                            std::cout << "Tests:" << std::endl;
+                            for (Test *test : tests)
+                            {
+                                std::cout << test->getName() << std::endl;
+                            }
+
+                            //JSON Object
+                            string json = "[";
+
+                            for (const auto test : tests)
+                            {
+                                json += test->serialize();
+                                json += ",";
+                            }
+                            json.pop_back();
+                            json += "]";
+                            response.send(Http::Code::Ok, json);
+                        } else
+                        {
+                            std::cout << "No tests found" << std::endl;
+                            response.send(Http::Code::Not_Found);
+                        }
+                    }
+                    else if(request.resource() == "/students_participate")
+                    {
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        std::cout << "Get Students for test " << test_id <<  std::endl;
+                        vector<Student *> students = db->getStudentsByTest(test_id);
+
+                        if (students.size() != 0)
+                        {
+                            std::cout << "Students:" << std::endl;
+                            for (Student *st : students)
+                            {
+                                std::cout << st->getFirstName() << std::endl;
+                            }
+
+                            //JSON Object
+                            string json = "[";
+
+                            for (const auto student : students)
+                            {
+                                json += student->serialize();
+                                json += ",";
+                            }
+                            json.pop_back();
+                            json += "]";
+                            response.send(Http::Code::Ok, json);
+                        } else
+                        {
+                            std::cout << "No students found" << std::endl;
+                            response.send(Http::Code::Not_Found);
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "Bad request" << std::endl;
+                        response.send(Http::Code::Bad_Request);
+                    }
                 }
 
-                if (request.method() == Http::Method::Post)
+                else if (request.method() == Http::Method::Post)
                 {
                     if (request.resource() == "/user")
                     {
@@ -237,7 +329,7 @@ HTTP_PROTOTYPE(HelloHandler)
                         }
                     }
 
-                    if (request.resource() == "/group")
+                    else if (request.resource() == "/group")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Creating group " << params.at("group_name") << std::endl;
@@ -252,7 +344,7 @@ HTTP_PROTOTYPE(HelloHandler)
                         }
                     }
 
-                    if (request.resource() == "/student")
+                    else if (request.resource() == "/student")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Creating student " << params.at("group_id") << " " << params.at("first_name")
@@ -269,7 +361,7 @@ HTTP_PROTOTYPE(HelloHandler)
                         }
                     }
 
-                    if (request.resource() == "/test")
+                    else if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Creating test named " << params.at("name") << " for " << params.at("group_id")
@@ -285,8 +377,45 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Bad_Request);
                         }
                     }
+
+                    else if (request.resource() == "/question")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+
+                        std::cout << "Adding question to test " << params.at("test_id") << " with scale " << params.at("scale") << std::endl;
+                        if (db->addQuestion(stoi(params.at("test_id")), stoi(params.at("scale"))))
+                        {
+                            std::cout << "Question creation success" << std::endl;
+                            response.send(Http::Code::Ok);
+                        } else
+                        {
+                            std::cout << "Question creation failed" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+
+                    else if (request.resource() == "/answer")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Adding answer to question number " << params.at("question_id") << std::endl;
+                        bool good;
+                        if (db->addAnswerToQuestion(stoi(params.at("question_id")), params.at("good") != "0"))
+                        {
+                            std::cout << "Answer creation success" << std::endl;
+                            response.send(Http::Code::Ok);
+                        } else
+                        {
+                            std::cout << "Answer creation failed" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "Bad request" << std::endl;
+                        response.send(Http::Code::Bad_Request);
+                    }
                 }
-                if (request.method() == Http::Method::Put)
+                else if (request.method() == Http::Method::Put)
                 {
                     if (request.resource() == "/group")
                     {
@@ -302,7 +431,7 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if (request.resource() == "/student")
+                    else if (request.resource() == "/student")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Update student " << params.at("student_id") << std::endl;
@@ -316,22 +445,53 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if (request.resource() == "/test")
+                    else if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Update test " << params.at("test_id") << std::endl;
-                        if (db->modifyTest(std::stoi(params.at("test_id")), params.at("test_name"),params.at("date")))
+                        Test* test = db->getTestById(std::stoi(params.at("test_id")));
+                        if(test->getUserId() == db->getUserIdByToken(token))
                         {
-                            std::cout << "Test was successfully modified" << std::endl;
+                            std::cout << "Update test " << params.at("test_id") << std::endl;
+                            if (db->modifyTest(std::stoi(params.at("test_id")), params.at("test_name"),
+                                               params.at("date")))
+                            {
+                                std::cout << "Test was successfully modified" << std::endl;
+                                response.send(Http::Code::Ok);
+                            } else
+                            {
+                                std::cout << "Test failed to modify" << std::endl;
+                                response.send(Http::Code::Bad_Request);
+                            }
+                        }
+                        else
+                        {
+                            std::cout << "Test cannot be managed by user (unauthorized)" << std::endl;
+                            response.send(Http::Code::Forbidden);
+                        }
+
+                        delete test;
+                    }
+                    else if (request.resource() == "/user")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Update user " << params.at("user_id") << std::endl;
+                        if (db->modifyUser(std::stoi(params.at("user_id")), params.at("login")))
+                        {
+                            std::cout << "User was successfully modified" << std::endl;
                             response.send(Http::Code::Ok);
                         } else
                         {
-                            std::cout << "Test failed to modify" << std::endl;
+                            std::cout << "User failed to modify" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
+                    else
+                    {
+                        std::cout << "Bad request" << std::endl;
+                        response.send(Http::Code::Bad_Request);
+                    }
                 }
-                if (request.method() == Http::Method::Delete)
+                else if (request.method() == Http::Method::Delete)
                 {
                     if (request.resource() == "/student")
                     {
@@ -347,7 +507,7 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if (request.resource() == "/group")
+                    else if (request.resource() == "/group")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Deleting group " << params.at("group_id") << std::endl;
@@ -361,20 +521,53 @@ HTTP_PROTOTYPE(HelloHandler)
                             response.send(Http::Code::Bad_Request);
                         }
                     }
-                    if (request.resource() == "/test")
+                    else if (request.resource() == "/test")
                     {
                         map<string, string> params = parseParameters(request.body());
-                        std::cout << "Deleting test " << params.at("test_id") << std::endl;
-                        if (db->deleteTest(std::stoi(params.at("test_id"))))
+                        Test* test = db->getTestById(std::stoi(params.at("test_id")));
+                        if(test->getUserId() == db->getUserIdByToken(token))
                         {
-                            std::cout << "Test was successfully deleted" << std::endl;
+                            std::cout << "Deleting test " << params.at("test_id") << std::endl;
+                            if (db->deleteTest(std::stoi(params.at("test_id"))))
+                            {
+                                std::cout << "Test was successfully deleted" << std::endl;
+                                response.send(Http::Code::Ok);
+                            } else
+                            {
+                                std::cout << "Test failed to delete" << std::endl;
+                                response.send(Http::Code::Bad_Request);
+                            }
+                        }
+                        else
+                        {
+                            std::cout << "Test cannot be managed by user (unauthorized)" << std::endl;
+                            response.send(Http::Code::Forbidden);
+                        }
+                    }
+                    else if (request.resource() == "/user")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        std::cout << "Demete user " << params.at("user_id") << std::endl;
+                        if (db->deleteUser(std::stoi(params.at("user_id"))))
+                        {
+                            std::cout << "User was successfully deleted" << std::endl;
                             response.send(Http::Code::Ok);
                         } else
                         {
-                            std::cout << "Test failed to delete" << std::endl;
+                            std::cout << "User failed to delete" << std::endl;
                             response.send(Http::Code::Bad_Request);
                         }
                     }
+                    else
+                    {
+                        std::cout << "Bad request" << std::endl;
+                        response.send(Http::Code::Bad_Request);
+                    }
+                }
+                else
+                {
+                    std::cout << "Bad request" << std::endl;
+                    response.send(Http::Code::Bad_Request);
                 }
             }
             else

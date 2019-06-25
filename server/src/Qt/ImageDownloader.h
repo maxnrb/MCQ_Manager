@@ -31,7 +31,14 @@ public:
 
     string getBase64()
     {
-        return base64;
+        if(base64 != "data:image/jpg;base64, ")
+        {
+            return base64;
+        }
+        else
+        {
+            return "";
+        }
     }
 
 public slots:

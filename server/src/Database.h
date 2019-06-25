@@ -13,6 +13,7 @@
 #include "model/Group.h"
 #include "model/Student.h"
 #include "model/Test.h"
+#include "model/StudentAnswer.h"
 
 using std::string;
 using std::vector;
@@ -34,24 +35,47 @@ public:
     ~Database();
 
     void connect();
+
     bool addGroup(string name);
     vector<Group*> getGroups();
     bool modifyGroup(int id, string name);
     bool deleteGroup(int id);
+
     bool addStudent(string name, string surname, int group_id);
     vector<Student*> getStudents(int group_id);
-    bool modifyStudent(int id, string first_name, string last_name, int group);
+    Student* getStudentById(int student_id);
+    bool modifyStudent(int id, string &first_name, string &last_name, int group);
     bool deleteStudent(int id);
+    bool setParticipate(int student_id, int test_id);
+    bool setCorrected(int student_id, int test_id);
 
-    bool addUser(string login, string password, int privilege=0);
-    bool checkUser(string login, string password);
     bool addTest(string name, string group, string date, int user);
     vector<Test*> getTests(int group_id);
+    vector<Test*> getTestsByStudent(int student_id);
+    vector<Student*> getStudentsByTest(int test_id);
+    Test* getTestById(int id);
     bool modifyTest(int id, string name, string date);
     bool deleteTest(int id);
+
+    bool addQuestion(int test, int scale);
+    bool addAnswerToQuestion(int question, bool isGood);
+    bool addStudentAnswer(int student, int answer, bool state);
+    vector<StudentAnswer*> getStudentAnswersByQuestion(int question, int student);
+    bool modifyStudentAnswer(int student, int answer, bool state);
+    vector<Question*> getQuestionsByTest(int test);
+    vector<Answer*> getAnswersByQuestion(int question);
+    Question* getQuestionById(int id);
+
+
+
     bool setToken(string login, string token);
     bool checkToken(string token);
     int getUserIdByToken(string token);
+    bool addUser(string login, string password, int privilege=0);
+    bool modifyUser(int id, string login);
+    bool deleteUser(int id);
+    bool checkUser(string login, string password);
+    string getUsersSerialized();
 
 };
 

@@ -4,7 +4,7 @@
 #include <pistache/endpoint.h>
 #include "headers/CORS.h"
 #include "headers/Authorization.h"
-#include "HelloHandler.h"
+#include "Server.h"
 
 using namespace Pistache;
 
@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     auto opts = Http::Endpoint::options().threads(1);
     Http::Endpoint server(addr);
     server.init(opts);
-    std::shared_ptr<HelloHandler> handler = std::make_shared<HelloHandler>(argc, argv);
+    std::shared_ptr<Server> handler = std::make_shared<Server>(argc, argv);
     server.setHandler(handler);
     server.serve();
 

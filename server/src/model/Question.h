@@ -15,10 +15,14 @@ class Question
 private:
     int id;
     int question_number;
+    int test_id;
 
     vector<Answer*> answers;
 
 public:
+    Question(int id, int questionNumber, int test_id) : id(id), question_number(questionNumber), test_id(test_id)
+    {}
+
     int getId() const{return id;}
     void setId(int id){Question::id = id;}
 
