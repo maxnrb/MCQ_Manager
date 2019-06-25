@@ -34,13 +34,13 @@ public:
         string json = "{";
         json += "\"id\":\""+std::to_string(id)+"\",";
         json += "\"question_number\":\""+std::to_string(question_number)+"\",";
-        json += "\"answers\":\"[";
+        json += "\"answers\":[";
         for(Answer* answer : answers)
         {
             json += answer->serialize();
             json += ",";
         }
-        json.pop_back();
+        if(answers.size() != 0) json.pop_back();
         json += "]";
         json += "}";
         return json;

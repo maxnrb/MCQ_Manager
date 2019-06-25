@@ -123,6 +123,46 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+#=============================================================================
+# Target rules for targets named server_automoc
+
+# Build rule for target.
+server_automoc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server_automoc
+.PHONY : server_automoc
+
+# fast build rule for target.
+server_automoc/fast:
+	$(MAKE) -f CMakeFiles/server_automoc.dir/build.make CMakeFiles/server_automoc.dir/build
+.PHONY : server_automoc/fast
+
+server_automoc.o: server_automoc.cpp.o
+
+.PHONY : server_automoc.o
+
+# target to build an object file
+server_automoc.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_automoc.cpp.o
+.PHONY : server_automoc.cpp.o
+
+server_automoc.i: server_automoc.cpp.i
+
+.PHONY : server_automoc.i
+
+# target to preprocess a source file
+server_automoc.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_automoc.cpp.i
+.PHONY : server_automoc.cpp.i
+
+server_automoc.s: server_automoc.cpp.s
+
+.PHONY : server_automoc.s
+
+# target to generate assembly for a file
+server_automoc.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_automoc.cpp.s
+.PHONY : server_automoc.cpp.s
+
 src/Database.o: src/Database.cpp.o
 
 .PHONY : src/Database.o
@@ -429,6 +469,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... server"
+	@echo "... server_automoc"
+	@echo "... server_automoc.o"
+	@echo "... server_automoc.i"
+	@echo "... server_automoc.s"
 	@echo "... src/Database.o"
 	@echo "... src/Database.i"
 	@echo "... src/Database.s"

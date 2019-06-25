@@ -1,3 +1,4 @@
 /mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/edit_cache.dir
 /mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server.dir
+/mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug/CMakeFiles/server_automoc.dir

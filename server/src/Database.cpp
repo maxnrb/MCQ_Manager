@@ -63,6 +63,20 @@ vector<Group*> Database::getGroups()
     return groups;
 }
 
+bool Database::modifyGroup(int id, string name)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "UPDATE groups SET name='"+name+"' WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 bool Database::deleteGroup(int id)
 {
     try
@@ -73,7 +87,7 @@ bool Database::deleteGroup(int id)
         return true;
     }catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
-        false;
+        return false;
     }
 }
 
@@ -116,6 +130,20 @@ vector<Student*> Database::getStudents(int group_id)
     return students;
 }
 
+bool Database::modifyStudent(int id, string first_name, string last_name, int group)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "UPDATE students SET first_name='"+first_name+"', last_name='"+last_name+"', group_id='"+std::to_string(group)+"' WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 bool Database::deleteStudent(int id)
 {
     try
@@ -126,7 +154,7 @@ bool Database::deleteStudent(int id)
         return true;
     }catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
-        false;
+        return false;
     }
 }
 
@@ -172,7 +200,6 @@ bool Database::addTest(string name, string group, string date, int user)
 {
     try
     {
-        string pass_hash = SHA1::toSha1(password);
         vector<string> dates = Utils::explode(date, '/');
         date = dates.at(2)+"-"+dates.at(0)+"-"+dates.at(1);
         soci::statement query = session->prepare << "INSERT INTO tests (name, date, group_id, user_id) VALUES('" + name + "', '"+date+"', '" + group + "', '"+std::to_string(user)+"')";
@@ -180,6 +207,49 @@ bool Database::addTest(string name, string group, string date, int user)
         return true;
     }catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+
+vector<Test*> Database::getTests(int group_id)
+{
+    vector<Test*> tests;
+    try
+    {
+        string pass_hash = SHA1::toSha1(password);
+        soci::row group_row;
+
+        soci::statement query = (session->prepare
+                << "SELECT id,name,DATE_FORMAT(date, \"%m/%d/%Y\"),user_id FROM tests WHERE group_id='"+std::to_string(group_id)+"'",
+                soci::into(group_row));
+        query.execute(true);
+        if(query.got_data())
+        {
+            do
+            {
+                Test *test = new Test(group_row.get<int>(0), group_row.get<string>(1), group_row.get<string>(2), group_row.get<int>(3));
+                tests.push_back(test);
+            } while (query.fetch());
+        }
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    return tests;
+}
+
+bool Database::modifyTest(int id, string name, string date)
+{
+    try
+    {
+        vector<string> dates = Utils::explode(date, '/');
+        date = dates.at(2)+"-"+dates.at(0)+"-"+dates.at(1);
+        soci::statement query = (session->prepare
+                << "UPDATE tests SET name='"+name+"', date='"+date+"' WHERE id='"+std::to_string(id)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
         return false;
     }
 }
@@ -194,7 +264,7 @@ bool Database::deleteTest(int id)
         return true;
     }catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
-        false;
+        return false;
     }
 }
 

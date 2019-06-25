@@ -23,6 +23,12 @@ private:
     vector<Question*> questions;
 
 public:
+    Test(int id, const string &name, const string &date, int userId) : id(id),
+                                                                                                            name(name),
+                                                                                                            date(date),
+                                                                                                            user_id(userId)
+    {}
+
     int getId() const{return id;}
     void setId(int id){Test::id = id;}
 
@@ -46,13 +52,13 @@ public:
         json += "\"name\":\""+name+"\",";
         json += "\"date\":\""+date+"\",";
         json += "\"user_id\":\""+std::to_string(user_id)+"\",";
-        json += "\"questions\":\"[";
+        json += "\"questions\":[";
         for(Question* question : questions)
         {
             json += question->serialize();
             json += ",";
         }
-        json.pop_back();
+        if(questions.size() != 0) json.pop_back();
         json += "]";
         json += "}";
         return json;
