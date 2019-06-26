@@ -30,4 +30,9 @@ Your url must be writted with pattern: http://domain.com/.
 Please don't forget the final /.
 ```
 
+## Qt
 
+```
+To use Qt, you need to install qt5-default:
+    - sudo apt install qt5-default
+```
