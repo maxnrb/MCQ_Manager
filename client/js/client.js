@@ -4,18 +4,14 @@ ajaxRequest('GET', addressIP + "/groups", showGroups);
 $(".nav-link").on('click', function () {
     $("#test_view").css("display", "none");
     $("#questionEdit_div").css("display", "none");
+
+    ajaxRequest('GET', addressIP + "/groups", showGroups);
 });
 
 
 $("#set_scaleBtn").on('click', function () {
     $("#test_view").css("display", "none");
     $("#questionEdit_div").css("display", "block");
-});
-
-
-$("#back_questionBtn").on('click', function () {
-    $("#questionEdit_div").css("display", "none");
-    $("#test_view").css("display", "block");
 });
 
 
@@ -26,7 +22,8 @@ document.getElementById("home_group").addEventListener("change", function(){
     $('#home_student').html('<option selected disabled>Choose group first ></option>');
     $('#home_test').html('<option selected disabled>Choose group first ></option>');
 
-    $("#testPicture_div").html('');
+    $("#testPicture_div").css("display", "none");
+    $("#testQuestion_div").css("display", "none");
 
     if(option.id !== "") {
         ajaxRequest('GET', addressIP + "/students", function (ajaxResponse) {
@@ -40,9 +37,10 @@ document.getElementById("home_group").addEventListener("change", function(){
 document.getElementById("home_student").addEventListener("change", function(){
     let option = document.querySelector("#home_student > option:checked");
 
-    $('#home_test').html('<option selected disabled>Choose student first ></option>');
+    $("#testPicture_div").css("display", "none");
+    $("#testQuestion_div").css("display", "none");
 
-    $("#testPicture_div").html('');
+    $('#home_test').html('<option selected disabled>Choose student first ></option>');
 
     if(option.id !== "") {
         ajaxRequest('GET', addressIP + "/participations", function (ajaxResponse) {
@@ -58,6 +56,10 @@ document.getElementById("home_test").addEventListener("change", function(){
     let option2 = document.querySelector("#home_test > option:checked");
 
     $("#testPicture_div").html('');
+    $("#studentTest_tbody").html('');
+
+    $("#testPicture_div").css("display", "none");
+    $("#testQuestion_div").css("display", "none");
 
     if(option1.id !== "" && option2.id !== "") {
         $("#test_showDiv").css("display", "block");
@@ -65,7 +67,6 @@ document.getElementById("home_test").addEventListener("change", function(){
 
         ajaxRequest('GET', addressIP + "/test_image", function (ajaxResponse) {
 
-            $("#testPicture_div").css("display", "block");
             $("#testPicture_div").append('<img src="'+ ajaxResponse +'" class="img-fluid" alt="Responsive image">');
 
         }, 'student_id=' + option1.id + "&test_id=" + option2.id );
@@ -189,9 +190,6 @@ document.getElementById("adminNav").addEventListener("click", function (event) {
 
 
 // Correct all students
-document.getElementById("correct_allBtn").addEventListener("click", function (event) {
-    //ajaxRequest('GET', addressIP + "/users", showAdmin)
-});
 
 
 function showTestStudents(ajaxResponse, test_id) {
@@ -207,12 +205,17 @@ function showTestStudents(ajaxResponse, test_id) {
 
         let html = '<tr>' +
             '<td>' + data[i].first_name + '</td>' +
-            '<td>' + data[i].last_name + '</td>' +
-            '<td>' + data[i].grade + '</td>';
+            '<td>' + data[i].last_name + '</td>';
+
+        if (data[i].grade === "-1") {
+            html += '<td>x</td>';
+        } else {
+            html += '<td>' + data[i].grade + '</td>';
+        }
 
         if(data[i].corrected === "0") {
             html += '<td>No</td>' +
-                '<td><button id=corr' + data[i].id + ' class="btn btn-warning p-1">Correct</button></td>';
+                '<td><button id=corr' + data[i].id + ' class="btn btn-warning btn-sm">Correct</button></td>';
         } else {
             html += '<td>Yes</td>' +
             '<td></td>';
@@ -222,7 +225,7 @@ function showTestStudents(ajaxResponse, test_id) {
 
         $('#testStudent_tbody').append(html);
 
-        $('#corr' + data[i].id).on("click", function (event) {
+        $('#corr' + data[i].id).unbind('click').on("click", function (event) {
             let id = event.target.id.substr(4);
 
             ajaxRequest('GET', addressIP + "/correction", function () {
@@ -239,6 +242,7 @@ function showTestStudents(ajaxResponse, test_id) {
         });
 
     }
+    $("#load_correctionWidget").css("display", "none");
 }
 
 function showGroups(ajaxResponse) {
@@ -297,6 +301,7 @@ function showStudents(ajaxResponse) {
     let students;
 
     $('#student_tbody').html('');
+
     $('#home_test').html('<option selected disabled>Choose student first ></option>');
 
     let option = document.querySelector("#group_manageStudentSelector > option:checked");
@@ -351,6 +356,8 @@ function showTests(ajaxResponse) {
     let data = JSON.parse(ajaxResponse);
     let option = document.querySelector("#group_manageTestSelector > option:checked");
 
+    $('#test_tbody').html('');
+
     for(let i = 0; i < data.length; i++) {
         $('#test_tbody').append(
             '<tr>' +
@@ -365,6 +372,9 @@ function showTests(ajaxResponse) {
         $('#view' + data[i].id).on("click", function (event) {
             let id = event.target.id.substr(4);
 
+            $('#testStudent_tbody').html('');
+
+            $("#load_correctionWidget").css("display", "block");
             ajaxRequest('GET', addressIP + "/students_participate", function (ajaxResponse) {
                 showTestStudents(ajaxResponse, id);
             }, 'test_id=' + id
@@ -376,6 +386,33 @@ function showTests(ajaxResponse) {
             );
 
             $('#test_view').css("display", "block");
+
+
+            $("#back_questionBtn").unbind('click').on('click', function () {
+                $("#questionEdit_div").css("display", "none");
+                $("#test_view").css("display", "block");
+
+                ajaxRequest('GET', addressIP + "/students_participate", function (ajaxResponse) {
+                    showTestStudents(ajaxResponse, id);
+                }, 'test_id=' + id
+                );
+            });
+
+
+            $("#correct_allBtn").unbind('click').on('click', function (event) {
+                $("#load_correctionWidget").css("display", "block");
+
+                ajaxRequest('GET', addressIP + "/correct_all", function () {
+                    $("#load_correctionWidget").css("display", "none");
+
+                    ajaxRequest('GET', addressIP + "/students_participate", function (ajaxResponse) {
+                        showTestStudents(ajaxResponse, id);
+                    }, 'test_id=' + id
+                    );
+
+                }, 'test_id=' + id
+                );
+            });
         });
 
 
@@ -471,6 +508,9 @@ function showStudentTests(ajaxResponse) {
 function showTestCase(ajaxResponse) {
     $("#load_testWidget").css("display", "none");
     $("#testQuestion_div").css("display", "block");
+    $("#testPicture_div").css("display", "block");
+
+    let student = document.querySelector("#home_student > option:checked");
 
     let questions = JSON.parse(ajaxResponse);
 
@@ -486,20 +526,20 @@ function showTestCase(ajaxResponse) {
             questionElem.append(
                 "<td>" +
                 "<div class='custom-control custom-checkbox justify-content-center'>" +
-                "<input class='custom-control-input' type='checkbox' " + ((answer.state === "1")?"checked":"") + " id='answ" + answer.id + "'/>" +
-                "<label class='custom-control-label' for='answ" + answer.id + "'></label>" +
+                "<input class='custom-control-input' type='checkbox' " + ((answer.state === "1")?"checked":"") + " id='sanswer" + answer.answer_id + "'/>" +
+                "<label class='custom-control-label' for='sanswer" + answer.answer_id + "'></label>" +
                 "</div>" +
                 "</td>"
             );
 
-            /*$('#answ' + answer.id).on("click", function (event) {
-                let id = event.target.id.substr(4);
+            $('#sanswer' + answer.answer_id).on("click", function (event) {
+                let id = event.target.id.substr(7);
 
-                ajaxRequest('PUT', addressIP + "/answer", function () {
+                ajaxRequest('PUT', addressIP + "/student_answer", function () {
 
-                }, 'answer_id=' + id + "&is_good=" + ( ($('#answ' + answer.id).prop("checked") === true) ? "1" : "0" )
+                }, 'student_id=' + student.id + '&answer_id=' + id + "&is_checked=" + ( ($('#sanswer' + answer.answer_id).prop("checked") === true) ? "1" : "0" )
                 );
-            });*/
+            });
         })
     });
 
@@ -509,6 +549,8 @@ function showTestCase(ajaxResponse) {
 function showQuestionEdition(ajaxResponse) {
     let data = JSON.parse(ajaxResponse);
     let questions = data.questions;
+
+    $('#questionEdit_tbody').html('');
 
     questions.forEach(function (question) {
         let answers = question.answers;
