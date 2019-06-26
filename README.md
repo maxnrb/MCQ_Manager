@@ -21,4 +21,13 @@ make -j
 make install
 ```
 
+## Server
+
+```
+To start the server, you must add command argument for the url.
+Usage: ./Server <url>
+Your url must be writted with pattern: http://domain.com/.
+Please don't forget the final /.
+```
+
 
