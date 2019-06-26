@@ -460,7 +460,7 @@ void QtTest::checkBox(){
 
 void QtTest::circle() {
     QPainter painter(&image);
-    painter.setPen( QPen(Qt::blue, 8)); // personnaliser
+    painter.setPen( QPen(Qt::red, 8)); // personnaliser
 
     for(int i=0; i<getNbQuestions();i++) {
         for (int j = 0; j < getNbAnswer(); j++) {
