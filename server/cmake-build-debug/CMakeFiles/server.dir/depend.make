@@ -10,6 +10,7 @@ CMakeFiles/server.dir/server_automoc.cpp.o: ../src/Qt/FileDownloader.h
 CMakeFiles/server.dir/server_automoc.cpp.o: ../src/Qt/ImageDownloader.h
 CMakeFiles/server.dir/server_automoc.cpp.o: ../src/Qt/ImageGetter.h
 CMakeFiles/server.dir/server_automoc.cpp.o: ../src/Qt/QtTest.h
+CMakeFiles/server.dir/server_automoc.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QBuffer
 CMakeFiles/server.dir/server_automoc.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QByteArray
 CMakeFiles/server.dir/server_automoc.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
 CMakeFiles/server.dir/server_automoc.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QIODevice
@@ -336,6 +337,7 @@ CMakeFiles/server.dir/src/Database.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGu
 
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: ../src/Qt/QtTest.cpp
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: ../src/Qt/QtTest.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QBuffer
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h
@@ -345,6 +347,7 @@ CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtC
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_msvc.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qbuffer.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h
@@ -408,6 +411,7 @@ CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtC
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h
@@ -420,14 +424,17 @@ CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtG
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgba64.h
+CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h
 CMakeFiles/server.dir/src/Qt/QtTest.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h
@@ -463,6 +470,7 @@ CMakeFiles/server.dir/src/Server.cpp.o: ../src/model/StudentAnswer.h
 CMakeFiles/server.dir/src/Server.cpp.o: ../src/model/Test.h
 CMakeFiles/server.dir/src/Server.cpp.o: ../src/utils/Utils.h
 CMakeFiles/server.dir/src/Server.cpp.o: ../src/utils/base64.h
+CMakeFiles/server.dir/src/Server.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QBuffer
 CMakeFiles/server.dir/src/Server.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QByteArray
 CMakeFiles/server.dir/src/Server.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
 CMakeFiles/server.dir/src/Server.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QIODevice
@@ -730,6 +738,7 @@ CMakeFiles/server.dir/src/main.cpp.o: ../src/model/StudentAnswer.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/model/Test.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/utils/Utils.h
 CMakeFiles/server.dir/src/main.cpp.o: ../src/utils/base64.h
+CMakeFiles/server.dir/src/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QBuffer
 CMakeFiles/server.dir/src/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QByteArray
 CMakeFiles/server.dir/src/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
 CMakeFiles/server.dir/src/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QIODevice

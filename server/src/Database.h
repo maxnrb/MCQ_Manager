@@ -60,12 +60,15 @@ public:
     int addQuestion(int test, int scale);
     bool addAnswerToQuestion(int question, bool isGood);
     bool addStudentAnswer(int student, int answer, bool state);
+    bool setStudentCorrected(int student, int test_id);
+    bool isStudentCorrected(int student, int test_id);
     vector<StudentAnswer*> getStudentAnswersByQuestion(int question, int student);
     bool modifyStudentAnswer(int student, int answer, bool state);
     vector<Question*> getQuestionsByTest(int test);
     vector<Answer*> getAnswersByQuestion(int question);
     bool modifyAnswer(int id, bool good);
     Question* getQuestionById(int id);
+    bool modifyQuestion(int question, int scale);
     Answer* getAnswerById(int id);
 
 

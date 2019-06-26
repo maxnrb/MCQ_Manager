@@ -6,6 +6,7 @@
 #define QCM2_QTTEST_H
 
 #include <QMainWindow>
+#include <QtCore/QBuffer>
 
 
 class QtTest : public QObject
@@ -64,8 +65,7 @@ public:
     int getNbQuestions() const;
     void setNbQuestions(int nbQuestions);
 
-    void setMyPixmap(const QPixmap &myPixmap);
-    void setImage();
+    void circle();
 
     QtTest(QImage &image,QWidget* parent = nullptr);
     virtual ~QtTest() {};
@@ -78,6 +78,15 @@ public:
     bool **getState() const
     {
         return state;
+    }
+
+    std::string getImageBase64()
+    {
+        QBuffer buffer;
+        buffer.open(QIODevice::WriteOnly);
+        image.save(&buffer, "JPG");
+        QByteArray const encoded = buffer.data().toBase64();
+        return "data:image/jpg;base64, " + encoded.toStdString();
     }
 
 };

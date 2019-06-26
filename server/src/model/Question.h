@@ -16,11 +16,12 @@ private:
     int id;
     int question_number;
     int test_id;
+    int scale;
 
     vector<Answer*> answers;
 
 public:
-    Question(int id, int questionNumber, int test_id) : id(id), question_number(questionNumber), test_id(test_id)
+    Question(int id, int questionNumber, int test_id, int scale) : id(id), question_number(questionNumber), test_id(test_id), scale(scale)
     {}
 
     int getTestId() const{return test_id;}
@@ -41,6 +42,7 @@ public:
         string json = "{";
         json += "\"id\":\""+std::to_string(id)+"\",";
         json += "\"question_number\":\""+std::to_string(question_number)+"\",";
+        json += "\"scale\":\""+std::to_string(scale)+"\",";
         json += "\"answers\":[";
         for(Answer* answer : answers)
         {

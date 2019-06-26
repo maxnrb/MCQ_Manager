@@ -130,48 +130,102 @@ HTTP_PROTOTYPE(Server)
                     {
                         int test_id = std::stoi(request.query().get("test_id").get());
                         int student_id = std::stoi(request.query().get("student_id").get());
-                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
-
-                        if(b64 != "")
+                        if(!db->isStudentCorrected(student_id, test_id))
                         {
-                            vector<Test*> tests = db->getTestsByStudent(student_id);
-                            bool participate = false;
-                            for(Test* t : tests)
-                            {
-                                if(t->getId() == test_id)
-                                {
-                                    participate = true;
-                                }
-                            }
+                            std::cout << "Scanning image for student " << student_id << " at test " << test_id
+                                      << std::endl;
+                            string b64 = Utils::getBase64ImgFromUrl(
+                                    "http://10.0.1.49/" + std::to_string(test_id) + "/" + std::to_string(student_id) +
+                                    ".jpg", argc, argv);
 
-                            if(!participate) db->setParticipate(student_id, test_id);
-                            response.send(Http::Code::Ok, b64);
+                            if (b64 != "")
+                            {
+                                vector<Test *> tests = db->getTestsByStudent(student_id);
+                                bool participate = false;
+                                for (Test *t : tests)
+                                {
+                                    if (t->getId() == test_id)
+                                    {
+                                        participate = true;
+                                    }
+                                }
+
+                                if (!participate) db->setParticipate(student_id, test_id);
+                                std::cout << "Test scanned and saved" << std::endl;
+                                response.send(Http::Code::Ok, b64);
+                            } else
+                            {
+                                std::cout << "Image not found" << std::endl;
+                                response.send(Http::Code::Not_Found);
+                            }
                         }
                         else
                         {
-                            response.send(Http::Code::Not_Found);
+                            std::cout << "Student already corrected. Return correction image instead" << std::endl;
+                            QImage image = Utils::getImageFromUrl(
+                                    "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                    std::to_string(student_id) + ".jpg", argc, argv);
+
+                            QtTest *qtest = new QtTest(image);
+
+                            response.send(Http::Code::Ok, qtest->getImageBase64());
+
+                            delete qtest;
                         }
                     }
                     else if (request.resource() == "/correction")
                     {
                         int test_id = std::stoi(request.query().get("test_id").get());
                         int student_id = std::stoi(request.query().get("student_id").get());
+                        std::cout << "Correcting student " << student_id << " at test " << test_id << std::endl;
+
                         string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
 
                         if(b64 != "")
                         {
-                            QImage pixmap = Utils::getImageFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
-                            QtTest* test = new QtTest(pixmap);
+                            if(!db->isStudentCorrected(student_id, test_id))
+                            {
+                                QImage image = Utils::getImageFromUrl(
+                                        "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                        std::to_string(student_id) + ".jpg", argc, argv);
+                                QtTest *qtest = new QtTest(image);
+                                Test *test = db->getTestById(test_id);
+                                for (int i = 0; i < test->getQuestions().size(); i++) //Pour chaque question
+                                {
+                                    Question *question = test->getQuestions().at(i);
+                                    for (int j = 0; j < question->getAnswers().size(); j++)
+                                    {
+                                        Answer *answer = question->getAnswers().at(j);
 
-                            std::cout << test->getNbQuestions() << std::endl;
-                            std::cout << test->getNbAnswer() << std::endl;
+                                        bool state = qtest->getState()[question->getQuestionNumber() - 1][
+                                                answer->getAnswerNumber() - 1];
+                                        db->addStudentAnswer(student_id, answer->getId(), state);
+                                    }
+                                }
+                                db->setCorrected(student_id, test_id);
+                                std::cout << "Student corrected" << std::endl;
+                                response.send(Http::Code::Ok, qtest->getImageBase64());
+                                delete qtest;
+                                delete test;
+                            }
+                            else
+                            {
+                                std::cout << "Student already corrected. Return correction image instead" << std::endl;
+                                QImage image = Utils::getImageFromUrl(
+                                        "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                        std::to_string(student_id) + ".jpg", argc, argv);
 
-                            delete test;
+                                QtTest *qtest = new QtTest(image);
 
-                            response.send(Http::Code::Ok);
+                                response.send(Http::Code::Ok, qtest->getImageBase64());
+
+                                delete qtest;
+                            }
+
                         }
                         else
                         {
+                            std::cout << "Image not found" << std::endl;
                             response.send(Http::Code::Not_Found);
                         }
                     }
@@ -266,6 +320,18 @@ HTTP_PROTOTYPE(Server)
                             std::cout << "No tests found" << std::endl;
                             response.send(Http::Code::Not_Found);
                         }
+                    }
+                    else if(request.resource() == "/test")
+                    {
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        vector<Test *> tests = db->getTests(test_id);
+                        Test* test = db->getTestById(test_id);
+
+                        std::cout << "Getting test : "  << test_id << std::endl;
+
+                        //JSON Object
+                        string json = test->serialize();
+                        response.send(Http::Code::Ok, json);
                     }
                     else if(request.resource() == "/participations")
                     {
@@ -513,6 +579,7 @@ HTTP_PROTOTYPE(Server)
                     {
                         map<string, string> params = parseParameters(request.body());
                         int answer_id = std::stoi(params.at("answer_id"));
+                        std::cout << "Modify Answer " << answer_id << std::endl;
 
                         Answer* answer = db->getAnswerById(answer_id);
                         Question* question = db->getQuestionById(answer->getQuestionId());
@@ -521,13 +588,43 @@ HTTP_PROTOTYPE(Server)
                         if(test->getUserId() == db->getUserIdByToken(token))
                         {
                             std::cout << "Update answer " << params.at("answer_id") << std::endl;
-                            if (db->modifyAnswer(answer_id, (params.at("isgood") == "1")?1:0))
+                            if (db->modifyAnswer(answer_id, (params.at("is_good") == "1")?1:0))
                             {
                                 std::cout << "Answer was successfully modified" << std::endl;
                                 response.send(Http::Code::Ok);
                             } else
                             {
                                 std::cout << "Answer failed to modify" << std::endl;
+                                response.send(Http::Code::Bad_Request);
+                            }
+                        }
+                        else
+                        {
+                            std::cout << "Test cannot be managed by user (unauthorized)" << std::endl;
+                            response.send(Http::Code::Forbidden);
+                        }
+
+                        delete test;
+                    }
+                    else if (request.resource() == "/question")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        int question_id = std::stoi(params.at("question_id"));
+                        std::cout << "Modify Question " << question_id << std::endl;
+
+                        Question* question = db->getQuestionById(question_id);
+                        Test* test = db->getTestById(question->getTestId());
+
+                        if(test->getUserId() == db->getUserIdByToken(token))
+                        {
+                            std::cout << "Update question " << params.at("question_id") << std::endl;
+                            if (db->modifyQuestion(question_id, std::stoi(params.at("scale"))))
+                            {
+                                std::cout << "Question was successfully modified" << std::endl;
+                                response.send(Http::Code::Ok);
+                            } else
+                            {
+                                std::cout << "Question failed to modify" << std::endl;
                                 response.send(Http::Code::Bad_Request);
                             }
                         }

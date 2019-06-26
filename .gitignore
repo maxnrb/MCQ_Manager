@@ -30,3 +30,5 @@ server/cmake-build-debug/server.cbp
 *.o
 *.internal
 *.includecache
+server/cmake-build-debug/server
+server/cmake-build-debug/CMakeFiles/server.dir/depend.make

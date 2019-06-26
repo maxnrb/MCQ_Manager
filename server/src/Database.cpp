@@ -446,6 +446,32 @@ bool Database::addStudentAnswer(int student, int answer, bool state)
     }
 }
 
+bool Database::setStudentCorrected(int student, int test_id)
+{
+    try
+    {
+        soci::statement query = session->prepare << "UPDATE participate SET corrected='1' WHERE student_id='"+std::to_string(student)+"' AND test_id='"+std::to_string(test_id)+"'";
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cerr << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+bool Database::isStudentCorrected(int student, int test_id)
+{
+    try
+    {
+        soci::row result;
+        soci::statement query = (session->prepare << "SELECT corrected FROM participate  WHERE student_id='"+std::to_string(student)+"' AND test_id='"+std::to_string(test_id)+"'", soci::into(result));
+        query.execute(true);
+        return result.get<int>(0);
+    }catch (const std::exception &e){
+        std::cerr << "Error: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 vector<StudentAnswer*> Database::getStudentAnswersByQuestion(int question, int student)
 {
     Question* q = getQuestionById(question);
@@ -500,14 +526,14 @@ vector<Question*> Database::getQuestionsByTest(int test)
         soci::row group_row;
 
         soci::statement query = (session->prepare
-                << "SELECT id,question_number,test_id FROM questions WHERE test_id='"+std::to_string(test)+"'",
+                << "SELECT id,question_number,test_id, scale FROM questions WHERE test_id='"+std::to_string(test)+"'",
                 soci::into(group_row));
         query.execute(true);
         if(query.got_data())
         {
             do
             {
-                Question *question = new Question(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2));
+                Question *question = new Question(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2), group_row.get<int>(3));
                 questions.push_back(question);
 
                 question->setAnswers(getAnswersByQuestion(question->getId()));
@@ -553,12 +579,12 @@ Question* Database::getQuestionById(int id)
         soci::row group_row;
 
         soci::statement query = (session->prepare
-                << "SELECT id,question_number,test_id FROM questions WHERE id='"+std::to_string(id)+"'",
+                << "SELECT id,question_number,test_id,scale FROM questions WHERE id='"+std::to_string(id)+"'",
                 soci::into(group_row));
         query.execute(true);
         if(query.got_data())
         {
-            Question *question = new Question(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2));
+            Question *question = new Question(group_row.get<int>(0), group_row.get<int>(1), group_row.get<int>(2), group_row.get<int>(3));
 
             soci::row answer_row;
 
@@ -586,6 +612,20 @@ Question* Database::getQuestionById(int id)
         std::cout << "Error: " << e.what() << std::endl;
     }
     return nullptr;
+}
+
+bool Database::modifyQuestion(int question, int scale)
+{
+    try
+    {
+        soci::statement query = (session->prepare
+                << "UPDATE questions SET scale='" << std::to_string(scale) << "' WHERE id='"+std::to_string(question)+"'");
+        query.execute(false);
+        return true;
+    }catch (const std::exception &e){
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
 }
 
 Answer* Database::getAnswerById(int id)
