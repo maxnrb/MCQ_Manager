@@ -32,6 +32,7 @@ private:
     ImageDownloader* window;
     int argc;
     char** argv;
+    string url_scans = "https://gaminisen.fr/";
 public:
 
 HTTP_PROTOTYPE(Server)
@@ -126,6 +127,43 @@ HTTP_PROTOTYPE(Server)
 
                 if (request.method() == Http::Method::Get)
                 {
+                    if (request.resource() == "/grade")
+                    {
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        int student_id = std::stoi(request.query().get("student_id").get());
+
+                        Test* test = db->getTestById(test_id);
+
+                        int note = 0;
+
+                        for(Question* question : test->getQuestions())
+                        {
+                            int scale = question->getScale();
+
+                            vector<StudentAnswer*> student_answers = db->getStudentAnswersByQuestion(question->getId(), student_id);
+
+                            bool isCorrect = true;
+                            for(StudentAnswer* student_answer : student_answers)
+                            {
+                                Answer* a = db->getAnswerById(student_answer->getAnswerId());
+                                if(a->isGoodAnswer())
+                                {
+                                    if(!student_answer->isState())
+                                    {
+                                        isCorrect = false;
+                                    }
+                                }
+                                delete a;
+                            }
+                            if(isCorrect)
+                            {
+                                note += scale;
+                            }
+                        }
+
+                        delete test;
+                        response.send(Http::Code::Ok, std::to_string(note));
+                    }
                     if (request.resource() == "/test_image")
                     {
                         int test_id = std::stoi(request.query().get("test_id").get());
@@ -135,7 +173,7 @@ HTTP_PROTOTYPE(Server)
                             std::cout << "Scanning image for student " << student_id << " at test " << test_id
                                       << std::endl;
                             string b64 = Utils::getBase64ImgFromUrl(
-                                    "http://10.0.1.49/" + std::to_string(test_id) + "/" + std::to_string(student_id) +
+                                    url_scans + std::to_string(test_id) + "/" + std::to_string(student_id) +
                                     ".jpg", argc, argv);
 
                             if (b64 != "")
@@ -163,7 +201,7 @@ HTTP_PROTOTYPE(Server)
                         {
                             std::cout << "Student already corrected. Return correction image instead" << std::endl;
                             QImage image = Utils::getImageFromUrl(
-                                    "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                    url_scans + std::to_string(test_id) + "/" +
                                     std::to_string(student_id) + ".jpg", argc, argv);
 
                             QtTest *qtest = new QtTest(image);
@@ -179,14 +217,14 @@ HTTP_PROTOTYPE(Server)
                         int student_id = std::stoi(request.query().get("student_id").get());
                         std::cout << "Correcting student " << student_id << " at test " << test_id << std::endl;
 
-                        string b64 =  Utils::getBase64ImgFromUrl("http://10.0.1.49/"+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
+                        string b64 =  Utils::getBase64ImgFromUrl(url_scans+std::to_string(test_id)+"/"+std::to_string(student_id)+".jpg", argc, argv);
 
                         if(b64 != "")
                         {
                             if(!db->isStudentCorrected(student_id, test_id))
                             {
                                 QImage image = Utils::getImageFromUrl(
-                                        "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                        url_scans + std::to_string(test_id) + "/" +
                                         std::to_string(student_id) + ".jpg", argc, argv);
                                 QtTest *qtest = new QtTest(image);
                                 Test *test = db->getTestById(test_id);
@@ -212,7 +250,7 @@ HTTP_PROTOTYPE(Server)
                             {
                                 std::cout << "Student already corrected. Return correction image instead" << std::endl;
                                 QImage image = Utils::getImageFromUrl(
-                                        "http://10.0.1.49/" + std::to_string(test_id) + "/" +
+                                        url_scans + std::to_string(test_id) + "/" +
                                         std::to_string(student_id) + ".jpg", argc, argv);
 
                                 QtTest *qtest = new QtTest(image);
@@ -285,6 +323,11 @@ HTTP_PROTOTYPE(Server)
                             json.pop_back();
                             json += "]";
                             response.send(Http::Code::Ok, json);
+
+                            for(Student* a : students)
+                            {
+                                delete a;
+                            }
                         } else
                         {
                             std::cout << "No students found" << std::endl;
@@ -314,6 +357,12 @@ HTTP_PROTOTYPE(Server)
                             }
                             json.pop_back();
                             json += "]";
+
+                            for(Test* a : tests)
+                            {
+                                delete a;
+                            }
+
                             response.send(Http::Code::Ok, json);
                         } else
                         {
@@ -324,7 +373,6 @@ HTTP_PROTOTYPE(Server)
                     else if(request.resource() == "/test")
                     {
                         int test_id = std::stoi(request.query().get("test_id").get());
-                        vector<Test *> tests = db->getTests(test_id);
                         Test* test = db->getTestById(test_id);
 
                         std::cout << "Getting test : "  << test_id << std::endl;
@@ -332,6 +380,7 @@ HTTP_PROTOTYPE(Server)
                         //JSON Object
                         string json = test->serialize();
                         response.send(Http::Code::Ok, json);
+                        delete test;
                     }
                     else if(request.resource() == "/participations")
                     {
@@ -357,6 +406,11 @@ HTTP_PROTOTYPE(Server)
                             json.pop_back();
                             json += "]";
                             response.send(Http::Code::Ok, json);
+
+                            for(Test* a : tests)
+                            {
+                                delete a;
+                            }
                         } else
                         {
                             std::cout << "No tests found" << std::endl;
@@ -380,19 +434,105 @@ HTTP_PROTOTYPE(Server)
                             //JSON Object
                             string json = "[";
 
-                            for (const auto student : students)
+                            for (Student* student : students)
                             {
+                                int note = -1;
+                                if(student->isCorrected())
+                                {
+                                    note = 0;
+                                    int student_id = student->getId();
+
+                                    Test* test = db->getTestById(test_id);
+
+                                    for(Question* question : test->getQuestions())
+                                    {
+                                        int scale = question->getScale();
+
+                                        vector<StudentAnswer*> student_answers = db->getStudentAnswersByQuestion(question->getId(), student_id);
+
+                                        bool isCorrect = true;
+                                        for(StudentAnswer* student_answer : student_answers)
+                                        {
+                                            Answer* a = db->getAnswerById(student_answer->getAnswerId());
+                                            if(a->isGoodAnswer())
+                                            {
+                                                if(!student_answer->isState())
+                                                {
+                                                    isCorrect = false;
+                                                }
+                                            }
+                                            delete a;
+                                        }
+                                        if(isCorrect)
+                                        {
+                                            note += scale;
+                                        }
+                                    }
+
+                                    delete test;
+                                }
+                                student->setGrade(note);
                                 json += student->serialize();
                                 json += ",";
                             }
                             json.pop_back();
                             json += "]";
                             response.send(Http::Code::Ok, json);
+
+                            for(Student* a : students)
+                            {
+                                delete a;
+                            }
                         } else
                         {
                             std::cout << "No students found" << std::endl;
                             response.send(Http::Code::Not_Found);
                         }
+                    }
+                    else if(request.resource() == "/student_answers")
+                    {
+                        int test_id = std::stoi(request.query().get("test_id").get());
+                        int student_id = std::stoi(request.query().get("student_id").get());
+                        std::cout << "Get Answers of student " << student_id << " for test " << test_id <<  std::endl;
+
+                        string json = "[";
+
+                        Test* test = db->getTestById(test_id);
+
+                        for(Question* q : test->getQuestions())
+                        {
+                            vector<StudentAnswer*> answers =  db->getStudentAnswersByQuestion(q->getId(), student_id);
+                            json += "{";
+                            json += "\"question_id\":\"" + std::to_string(q->getId()) + "\",";
+                            json += "\"question_number\":\"" + std::to_string(q->getQuestionNumber()) + "\",";
+                            json += "\"answers\":[";
+                            for(StudentAnswer* sa : answers)
+                            {
+                                Answer* answer = db->getAnswerById(sa->getAnswerId());
+                                json += "{";
+                                json += "\"answer_id\":\"" + std::to_string(answer->getId()) + "\",";
+                                json += "\"answer_number\":\"" + std::to_string(answer->getAnswerNumber()) + "\",";
+                                json += "\"state\":\"" + ((string) ((sa->isState())?"1":"0")) + "\"";
+                                json += "},";
+                                delete answer;
+                            }
+                            json.pop_back();
+                            json += "]";
+                            json += "},";
+
+                            for(StudentAnswer* a : answers)
+                            {
+                                delete a;
+                            }
+                        }
+
+                        json.pop_back();
+
+                        json += "]";
+
+                        delete test;
+
+                        response.send(Http::Code::Ok, json);
                     }
                     else
                     {
@@ -479,6 +619,10 @@ HTTP_PROTOTYPE(Server)
                         for(Student* student : students)
                         {
                             db->setParticipate(student->getId(), test_id);
+                        }
+                        for(Student* a : students)
+                        {
+                            delete a;
                         }
                     }
 
@@ -605,6 +749,8 @@ HTTP_PROTOTYPE(Server)
                         }
 
                         delete test;
+                        delete answer;
+                        delete question;
                     }
                     else if (request.resource() == "/question")
                     {
@@ -635,6 +781,7 @@ HTTP_PROTOTYPE(Server)
                         }
 
                         delete test;
+                        delete question;
                     }
                     else if (request.resource() == "/user")
                     {
@@ -708,6 +855,7 @@ HTTP_PROTOTYPE(Server)
                             std::cout << "Test cannot be managed by user (unauthorized)" << std::endl;
                             response.send(Http::Code::Forbidden);
                         }
+                        delete test;
                     }
                     else if (request.resource() == "/user")
                     {

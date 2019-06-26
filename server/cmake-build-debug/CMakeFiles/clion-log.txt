@@ -1,4 +1,0 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /mnt/d/wamp64/www/MCQ_Manager/server
--- Configuring done
--- Generating done
--- Build files have been written to: /mnt/d/wamp64/www/MCQ_Manager/server/cmake-build-debug

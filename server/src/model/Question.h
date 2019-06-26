@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Answer.h"
+#include "../utils/Utils.h"
 
 using std::vector;
 
@@ -23,6 +24,16 @@ private:
 public:
     Question(int id, int questionNumber, int test_id, int scale) : id(id), question_number(questionNumber), test_id(test_id), scale(scale)
     {}
+
+    ~Question()
+    {
+        for(Answer* a : answers)
+        {
+            delete a;
+        }
+    }
+
+    int getScale(){return scale;}
 
     int getTestId() const{return test_id;}
     void setTestId(int testId){test_id = testId;}

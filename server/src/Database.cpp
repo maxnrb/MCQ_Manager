@@ -476,32 +476,32 @@ vector<StudentAnswer*> Database::getStudentAnswersByQuestion(int question, int s
 {
     Question* q = getQuestionById(question);
 
+    vector<StudentAnswer*> student_answers;
+
     for(Answer* a : q->getAnswers())
     {
-        vector<StudentAnswer*> student_answers;
         try
         {
             soci::row group_row;
 
             soci::statement query = (session->prepare
-                    << "SELECT id,answer,student_id,answer_id FROM students_answer WHERE answer_id='"+std::to_string(a->getId())+"'",
+                    << "SELECT id,answer,student_id,answer_id FROM students_answer WHERE answer_id='"+std::to_string(a->getId())+"' AND student_id='"+std::to_string(student)+"'",
                     soci::into(group_row));
             query.execute(true);
             if(query.got_data())
             {
                 do
                 {
-                    StudentAnswer *sa = new StudentAnswer(group_row.get<int>(0), group_row.get<my_bool >(1), group_row.get<int>(2), group_row.get<int>(3));
+                    StudentAnswer *sa = new StudentAnswer(group_row.get<int>(0), group_row.get<int >(1), group_row.get<int>(2), group_row.get<int>(3));
                     student_answers.push_back(sa);
                 } while (query.fetch());
             }
         }catch (const std::exception &e){
             std::cout << "Error: " << e.what() << std::endl;
         }
-        delete q;
-        return student_answers;
     }
     delete q;
+    return student_answers;
 }
 
 bool Database::modifyStudentAnswer(int student, int answer, bool state)

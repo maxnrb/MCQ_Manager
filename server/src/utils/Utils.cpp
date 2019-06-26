@@ -65,7 +65,7 @@ string Utils::getBase64ImgFromUrl(string url, int argc, char** argv)
 QImage Utils::getImageFromUrl(string url, int argc, char** argv)
 {
     QCoreApplication app(argc, argv);
-    ImageDownloader* downloader = new ImageDownloader(url);
+    ImageDownloader *downloader = new ImageDownloader(url);
     app.exec();
     delete downloader;
     return downloader->getImage();

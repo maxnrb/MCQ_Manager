@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "Question.h"
+#include "../utils/Utils.h"
 
 using std::string;
 using std::vector;
@@ -30,6 +31,14 @@ public:
                                                                                                             date(date),
                                                                                                             user_id(userId)
     {}
+
+    ~Test()
+    {
+        for(Question* a : questions)
+        {
+            delete a;
+        }
+    }
 
     void setCorrected(bool corrected){this->corrected = corrected;}
     bool isCorrected(){return this->corrected;}
