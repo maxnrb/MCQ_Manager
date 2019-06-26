@@ -32,13 +32,22 @@ private:
     ImageDownloader* window;
     int argc;
     char** argv;
-    string url_scans = "https://gaminisen.fr/";
+    string url_scans;
 public:
 
 HTTP_PROTOTYPE(Server)
     string b64;
     Server(int argc, char** argv) : argc(argc), argv(argv)
     {
+        if(argc != 0)
+        {
+            url_scans = argv[0];
+        }
+        else
+        {
+            std::cout << "You must add url of the scans server to parameters.\n Usage: ./Program <url>\n Please don't forget the final / at the end of the url." << std::endl;
+            exit(1);
+        }
         db = new Database("127.0.0.1", "mcq_user", "mcq_password");
         db->connect();
     }
@@ -665,7 +674,25 @@ HTTP_PROTOTYPE(Server)
                 }
                 else if (request.method() == Http::Method::Put)
                 {
-                    if (request.resource() == "/group")
+                    if (request.resource() == "/student_answer")
+                    {
+                        map<string, string> params = parseParameters(request.body());
+                        int answer_id = std::stoi(params.at("answer_id"));
+                        int student_id = std::stoi(params.at("student_id"));
+                        std::cout << "Modify Student answer Answer " << answer_id << std::endl;
+
+                        std::cout << "Update answer " << params.at("answer_id") << std::endl;
+                        if (db->modifyStudentAnswer(student_id, answer_id, params.at("is_checked") == "1")?1:0)
+                        {
+                            std::cout << "Student Answer was successfully modified" << std::endl;
+                            response.send(Http::Code::Ok);
+                        } else
+                        {
+                            std::cout << "Student Answer failed to modify" << std::endl;
+                            response.send(Http::Code::Bad_Request);
+                        }
+                    }
+                    else if (request.resource() == "/group")
                     {
                         map<string, string> params = parseParameters(request.body());
                         std::cout << "Set name of group " << params.at("group_id") << " to " << params.at("name") << std::endl;
