@@ -185,8 +185,13 @@ void QtTest::squareLeft() {
             totalmid=0;
         }
     }
-    goodMid = totalmid / nb ;
-    middleLeft->push_back(goodMid);
+    if(nb!=0) {
+        goodMid = totalmid / nb ;
+        middleLeft->push_back(goodMid);
+        }
+    else{
+        error=true;
+    }
 
 }
 
@@ -208,17 +213,13 @@ void QtTest::squareTop() {
             totalmid=0;
         }
     }
-    goodMid = totalmid / nb ;
-    middleTop->push_back(goodMid);
-
-    /*qDebug()<< "longueur : " << lenghtX->at(i) << " / largeur : " << widthY->at(i);
-    for(int t = 0; t < middleTop->size(); t++) {
-        for (int m = 0; m < 20; m++) {
-            for (int n = 0; n < 20; n++) {
-                image.setPixel(middleTop->at(t)+n-10,moyY + m - 10, qRgb(0, 0, 255));
-            }
+    if(nb!=0){
+        goodMid = totalmid / nb ;
+        middleTop->push_back(goodMid);
         }
-    }*/
+    else{
+        error=true;
+    }
 }
 
 void QtTest::setMoyXRight(){
@@ -263,8 +264,13 @@ void QtTest::squareRight() {
             totalmid=0;
         }
     }
-    goodMid = totalmid / nb ;
-    middleRight->push_back(goodMid);
+    if(nb!=0) {
+            goodMid = totalmid / nb;
+            middleRight->push_back(goodMid);
+        }
+        else{
+            error=true;
+        }
 }
 
 void QtTest::setMoyYBot(){
@@ -305,9 +311,12 @@ void QtTest::squareBot() {
         }
     }
     if(nb!=0) {
-        goodMid = totalmid / nb;
-        middleBot->push_back(goodMid);
-    }
+            goodMid = totalmid / nb;
+            middleBot->push_back(goodMid);
+        }
+        else{
+            error=true;
+        }
 }
 
 void QtTest::horizontalLine(){
