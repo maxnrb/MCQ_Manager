@@ -31,6 +31,23 @@ Please don't forget the final /.
 Usage: ./Server <url> <console output : true|false>
 ```
 
+## Client
+
+The client's superadmin's creditentials are: 
+
+```
+login: superadmin
+password: supermotdepasse
+```
+
+The client's regular user's creditentials are:
+
+```
+login: arthur
+password: arthur
+```
+
+
 ## Qt
  
 To use Qt, you need to have qt5-default:
