@@ -21,6 +21,8 @@ make -j
 make install
 ```
 
+If the CLion don't find pistache, you need to include directories to the installation of pistache in the CMakeLists.txt file.
+
 ## Server
 
 To start the server, you must add command argument for the url and for enabling console output.
