@@ -21,10 +21,11 @@ private:
     ImageGetter* getter;
     string base64;
     QImage image;
+    bool console_output;
 public:
-    ImageDownloader(string url)
+    ImageDownloader(string url, bool console_output) : console_output(console_output)
     {
-        std::cout << "Downloading image from " + url << std::endl;
+        if(console_output) std::cout << "Downloading image from " + url << std::endl;
         getter = new ImageGetter(QString::fromStdString(url));
         connect(getter, SIGNAL(ok()), this, SLOT(loadImage()));
     }
@@ -49,7 +50,7 @@ public:
 public slots:
     void loadImage()
     {
-        std::cout << "Image Downloaded" << std::endl;
+        if(console_output) std::cout << "Image Downloaded" << std::endl;
         image = getter->getImage();
         QBuffer buffer;
         buffer.open(QIODevice::WriteOnly);

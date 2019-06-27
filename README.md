@@ -23,11 +23,12 @@ make install
 
 ## Server
 
-```
-To start the server, you must add command argument for the url.
-Usage: ./Server <url>
+To start the server, you must add command argument for the url and for enabling console output.
 Your url must be writted with pattern: http://domain.com/.
 Please don't forget the final /.
+
+```
+Usage: ./Server <url> <console output : true|false>
 ```
 
 

@@ -53,19 +53,19 @@ string Utils::generateRandomString(const int len) {
  * @param argv
  * @return
  */
-string Utils::getBase64ImgFromUrl(string url, int argc, char** argv)
+string Utils::getBase64ImgFromUrl(string url, int argc, char** argv, bool output)
 {
     QCoreApplication app(argc, argv);
-    ImageDownloader* downloader = new ImageDownloader(url);
+    ImageDownloader* downloader = new ImageDownloader(url, output);
     app.exec();
     string b64  = downloader->getBase64();
     return b64;
 }
 
-QImage Utils::getImageFromUrl(string url, int argc, char** argv)
+QImage Utils::getImageFromUrl(string url, int argc, char** argv, bool output)
 {
     QCoreApplication app(argc, argv);
-    ImageDownloader *downloader = new ImageDownloader(url);
+    ImageDownloader *downloader = new ImageDownloader(url, output);
     app.exec();
     delete downloader;
     return downloader->getImage();

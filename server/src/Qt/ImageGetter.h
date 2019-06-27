@@ -41,7 +41,7 @@ public:
 private slots:
     void loadImage()
     {
-        std::cout << "Downloaded" << std::endl;
+        //std::cout << "Downloaded" << std::endl;
         downloaded = true;
         buttonImage.loadFromData(m_pImgCtrl->downloadedData());
         emit ok();

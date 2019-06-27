@@ -127,7 +127,7 @@ void QtTest::initChange(int value){
 void QtTest::initChange2(int value){
     change->clear();
     int last=0;
-    for (int i = 0; i < widthY->size(); ++i) {
+    for (int i = 1; i < widthY->size(); ++i) {
         if(widthY->at(i) > value-5 && widthY->at(i) < value+5 ){
             last=lenghtX->at(i);
             if (lenghtX->at(i) != lenghtX->at(i-1)+1 ){
