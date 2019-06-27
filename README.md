@@ -47,6 +47,8 @@ login: arthur
 password: arthur
 ```
 
+You need to modify the variable 'addressIP' in the js/ajax.js file to modify the server address
+
 
 ## Qt
  
