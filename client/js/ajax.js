@@ -2,13 +2,14 @@
 
 const addressIP = "http://10.16.1.164:8080";
 
-function ajaxRequest(type, request, callback, data = null) {
+function ajaxRequest(type, request, callback, data = null, errorCallback = null) {
   let xhr;
 
   xhr = new XMLHttpRequest();
   if (type === 'GET' && data !== null) {
     request += '?' + data;
   }
+
   xhr.open(type, request, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
@@ -25,6 +26,7 @@ function ajaxRequest(type, request, callback, data = null) {
 
       case 401 :
         document.location.href="login.html";
+
         break;
 
       case 403 :
@@ -39,6 +41,10 @@ function ajaxRequest(type, request, callback, data = null) {
           color: 'red',
           position : "topRight"
         });
+
+        if(errorCallback !== null) {
+          errorCallback(xhr.responseText);
+        }
 
         break;
 

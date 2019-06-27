@@ -215,7 +215,10 @@ function showTestStudents(ajaxResponse, test_id) {
 
         if(data[i].corrected === "0") {
             html += '<td>No</td>' +
-                '<td><button id=corr' + data[i].id + ' class="btn btn-warning btn-sm">Correct</button></td>';
+                '<td>' +
+                '<button id=corr' + data[i].id + ' class="btn btn-warning btn-sm" style="display: block;">Correct</button>' +
+                '<div class="small_loader" id="load_correctionWidget' + data[i].id + '" style="display: none;"></div>' +
+                '</td>';
         } else {
             html += '<td>Yes</td>' +
             '<td></td>';
@@ -228,20 +231,26 @@ function showTestStudents(ajaxResponse, test_id) {
         $('#corr' + data[i].id).unbind('click').on("click", function (event) {
             let id = event.target.id.substr(4);
 
+            $("#corr" + id).css("display", "none");
+            $("#load_correctionWidget" + id).css("display", "block");
+
             ajaxRequest('GET', addressIP + "/correction", function () {
-                // TODO
+                $("#load_correctionWidget" + id).css("display", "none");
+
                 ajaxRequest('GET', addressIP + "/students_participate", function (ajaxResponse) {
-                        showTestStudents(ajaxResponse, test_id);
+                    showTestStudents(ajaxResponse, test_id);
                     }, 'test_id=' + test_id
                 );
 
-            }, 'test_id=' + test_id + "&student_id=" + id
+                }, 'test_id=' + test_id + "&student_id=" + id,
+                function () {
+                    $("#corr" + id).css("display", "block");
+                    $("#load_correctionWidget" + id).css("display", "none");
+                }
             );
-
-            //showTestStudents(ajaxResponse);
         });
-
     }
+
     $("#load_correctionWidget").css("display", "none");
 }
 
@@ -476,7 +485,7 @@ function showAdmin(ajaxResponse) {
         });
 
         $('#adel' + data[i].id).on("click", function (event) {
-            let id = event.target.id.sxubstr(4);
+            let id = event.target.id.substr(4);
 
             ajaxRequest('DELETE', addressIP + "/user", function () {
                 iziToast.show({

@@ -5,7 +5,6 @@ $('#login-send').unbind('click').click(function (event) {
 $('#disconnect_btn').unbind('click').click(function () {
     Cookies.set('token', '');
     document.location.href="login.html";
-    // TODO Msg
 });
 
 function validateLogin(event) {
@@ -19,9 +18,19 @@ function validateLogin(event) {
         text += '<span class="glyphicon glyphicon-exclamation-sign"></span>';
 
         if(login.length === 0 ) {
-            text += '<strong> Login non renseigné</strong>';
+            iziToast.show({
+                title: 'No username filled in !',
+                color: 'red',
+                position : "topCenter"
+            });
+
         } else if(password.length === 0) {
-            text += '<strong> Mot de passe non renseigné</strong>';
+            iziToast.show({
+                title: 'No password filled in !',
+                color: 'red',
+                position : "topCenter"
+            });
+
         }
 
         text += '</div>';
@@ -39,6 +48,17 @@ function validateLogin(event) {
             Cookies.set('token', xhr.responseText);
             document.location.href="index.html";
             // TODO Msg
+
+        } else if(xhr.status === 401) {
+            $("#username").val("");
+            $("#password").val("");
+
+            iziToast.show({
+                title: 'Incorrect information !',
+                color: 'red',
+                position : "topCenter"
+            });
+
         } else {
             // TODO Msg
             console.log('HTTP error:' + xhr.status);
