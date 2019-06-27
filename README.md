@@ -31,4 +31,18 @@ Please don't forget the final /.
 Usage: ./Server <url> <console output : true|false>
 ```
 
-
+## Qt
+ 
+To use Qt, you need to have qt5-default:
+Verify you have the packet qt5-default :
+```sh 
+apt-cache policy qt5-default 
+``` 
+or
+``` sh
+apt list qt5-default
+```
+If you don't have, install qt5-default:
+```sh
+sudo apt install qt5-default
+```
