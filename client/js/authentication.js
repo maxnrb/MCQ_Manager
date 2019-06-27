@@ -47,7 +47,6 @@ function validateLogin(event) {
         if (xhr.status === 200) {
             Cookies.set('token', xhr.responseText);
             document.location.href="index.html";
-            // TODO Msg
 
         } else if(xhr.status === 401) {
             $("#username").val("");
@@ -60,7 +59,6 @@ function validateLogin(event) {
             });
 
         } else {
-            // TODO Msg
             console.log('HTTP error:' + xhr.status);
         }
     };
